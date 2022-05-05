@@ -3,4 +3,9 @@ test branch master
 test three + 1
 test new master
 test fix commit error
-new fix 
+new fix 2
+
+
+  "gitHooks": {
+    "pre-commit": "lint-staged"
+  }
