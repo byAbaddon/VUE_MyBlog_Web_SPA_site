@@ -1,34 +1,83 @@
 <template>
   <section id="login">
+    <h2 class="message"></h2>
     <div class="color">
-        <div class="login-form">
-            <h1>Login</h1>
-            <form action="#/login" method="POST" id="form">
-                <label for="email">Email</label>
-                <input type="text" name="email">
-                <label for="password">Password</label>
-                <input type="password" name="password">
-                <button>Submit</button>
-                <a href="#/register" class="option">Don't have an account?</a>
-            </form>
-        </div>
+      <div class="login-form">
+        <h1>Login</h1>
+        <form id="form" @submit.prevent="submitLogin">
+          <label for="email">Email</label>
+          <input type="text" name="email" placeholder="required" />
+          <label for="password">Password</label>
+          <input type="password" name="password" placeholder="6 symbols minlength"/>
+          <div id="btn">
+            <button id="btnSubmit">Submit</button>
+            <button
+              @click.prevent="btnReset"
+              style="color: red; background: lightpink"
+            >
+              Reset
+            </button>
+          </div>
+
+          <router-link to="/register" class="option"
+            >Don't have an account?</router-link
+          >
+        </form>
+      </div>
     </div>
-</section>
+  </section>
 </template>
 
 <script>
-export default {
+import loginUser from "@/services/login";
 
-}
+export default {
+  methods: {
+    btnReset(e) {
+      e.target.parentElement.parentElement.reset()
+    },
+
+    submitLogin(e) {
+      let formData = new FormData(e.target);
+      let email = formData.get("email");
+      let password = formData.get("password");
+
+      if (/\w{2,}@\w{2,}\.\w{2,}/.test(email) && password.length > 5) {
+
+        loginUser(email, password).then((message) => {
+          document.getElementById("btnSubmit").style.color = "green";
+          document.getElementsByClassName("message")[0].textContent = message;
+          if (message == "Success") {
+            setTimeout(() => {
+              e.target.reset();
+              this.$router.push("/");
+            }, 2500);
+          }
+          setTimeout(() => {
+            document.getElementById("btnSubmit").style.color = "white";
+            document.getElementsByClassName("message")[0].textContent = "";
+          }, 2000);
+        });
+      }
+    },
+  },
+};
 </script>
 
 <style scoped>
+.message {
+  position: absolute;
+  top: 5em;
+  color: gold;
+  text-decoration: underline;
+}
+
 #login {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background: url('@/assets/images/login.jpg');
+  background: url("@/assets/images/login.jpg");
   background-size: cover;
 }
 
@@ -76,6 +125,8 @@ export default {
   background: #212121;
   color: #fff;
   margin-top: 30px;
+  margin-left: 2.5em;
+  border: double;
 }
 
 #login button:hover {

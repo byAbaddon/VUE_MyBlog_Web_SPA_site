@@ -1,17 +1,19 @@
 <template>
+
   <section id="register">
+     <h2 class="message"> </h2>
     <div class="color">
         <div class="register-form">
             <h1>Register</h1>
-            <form action="#/register" method="POST" id="form">
+            <form id="form" @submit.prevent="submitRegistration">
                 <label for="email">Email</label>
-                <input type="text" name="email">
-                <label for="password">Password</label>
-                <input type="password" name="password">
+                <input type="text" name="email" placeholder="required">
+                <label for="password" >Password</label>
+                <input type="password" name="password"  placeholder="6 symbols minlength">
                 <label for="repeat-password">Repeat Password</label>
-                <input type="password" name="repeatPassword">
-                <button>Submit</button>
-                <a href="#/login" class="option">Already have an account?</a>
+                <input type="password" name="repeatPassword" placeholder="passwords fields must be equal">
+                <button id="btnSubmit">Submit</button>              
+                <router-link to="/login" class="option">Already have an account?</router-link>
             </form>
         </div>
     </div>
@@ -19,12 +21,49 @@
 </template>
 
 <script>
-export default {
+import registrationNewUser from '@/services/register'
 
+export default {
+ data:() => ({
+ }) ,
+
+   methods:{
+     submitRegistration(e){
+       const [email, password, repeatPassword] = e.target.querySelectorAll('input')
+       if(/\w{2,}@\w{2,}\.\w{2,}/.test(email.value) &&  password.value.length > 5 && password.value == repeatPassword.value) {
+         document.getElementById('btnSubmit').style.color = 'green'
+
+         registrationNewUser(email.value, password.value).then( message => {
+            document.getElementsByClassName('message')[0].textContent = message
+
+             if (message == 'You register was successful') {
+                 setTimeout(() => {
+                    e.target.reset()
+                    this.$router.push('/login')
+                }, 3500);
+             } 
+              setTimeout(() => {
+                    document.getElementById('btnSubmit').style.color = 'white'
+                    document.getElementsByClassName('message')[0].textContent = ''
+              }, 3000);
+         })
+        }
+
+      }
+    },
 }
 </script>
 
+
 <style scoped>
+
+.message{
+  position: absolute;
+  top: 4em;
+  color:gold;
+  text-decoration: underline;
+}
+
 #register {
   display: flex;
   justify-content: center;
@@ -81,6 +120,7 @@ export default {
   background: #212121;
   color: #fff;
   margin-top: 30px;
+  border: double;
 }
 
 #register button:hover {
