@@ -25,9 +25,12 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-bottom: 5px ;
+  height:50px;
+  /* width: 100%;
   position: absolute;
-  width: 100%;
+  left: 0;
+  top: 0;
+ */
 }
 
 #header h1 {
