@@ -5,7 +5,7 @@ test new master
 test fix commit error
 new fix 2
 
-
+from last row in package.json
   "gitHooks": {
     "pre-commit": "lint-staged"
   }
