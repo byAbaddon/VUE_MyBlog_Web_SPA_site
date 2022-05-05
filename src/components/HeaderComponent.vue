@@ -4,10 +4,11 @@
     <h2>Welcome <span>{{email}}!</span>!</h2>
   <nav id="nav">
       <ul>
-        <li><a href="#/logout">Logout</a></li>
-        <li><a href="#/">Home</a></li>
-        <li><a href="#/login">Login</a></li>
-        <li><a href="#/register">Register</a></li>
+        <router-link to="/logout">Logout</router-link>
+        <router-link to="/">Home</router-link>
+        <router-link to="/login">Login</router-link>
+        <router-link to="/register">Register</router-link>
+        <router-link to="/about">About</router-link>
       </ul>
     </nav>
 </div>
@@ -15,6 +16,13 @@
 
 <script>
 export default {
+  data: ()=> ({
+    email: 'noEmail'
+
+  }),
+  objects:{
+  
+  }
 
 }
 </script>
@@ -53,7 +61,8 @@ export default {
 #nav a {
   color: #fff;
   text-decoration: none;
-  padding: 10px 15px;
+  padding: 5px;
+  margin:10px;
   text-align: center;
   transition: 0.5s;
 }
@@ -61,7 +70,7 @@ export default {
 #nav a:hover {
   background: #fff;
   color: #212121;
-  padding: 6px 12px;
+  padding: 2px;
 }
 
 #header h2 {

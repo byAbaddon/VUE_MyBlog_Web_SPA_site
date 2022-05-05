@@ -1,11 +1,11 @@
 <template>
-<v-app>
+ <div>
    <header-component /> 
-      <v-main class="main">
+      <div class="main">
           <router-view />
-       </v-main> 
+       </div> 
     <footer-component/>
-  </v-app>
+</div>
 </template>
 
 <script>
