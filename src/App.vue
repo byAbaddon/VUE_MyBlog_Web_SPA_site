@@ -26,8 +26,12 @@ export default {
 </script>
 
 <style lang="scss">
-html,
-body {
+
+html {
+  font-family: sans-serif;
+}
+
+html, body {
   height: 100%;
   width: 100%;
   padding: 0;
@@ -39,8 +43,5 @@ body {
   flex-direction: column;
 }
 
-.main {
-  flex: auto;
-  color: red;
-}
+
 </style>

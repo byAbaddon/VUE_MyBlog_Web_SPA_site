@@ -47,9 +47,10 @@ export default {
 
       if (/\w{2,}@\w{2,}\.\w{2,}/.test(email) && password.length > 5) {
          e.target.reset();
+         
         loginUser(email, password).then((message) => {
           document.getElementById("btnSubmit").style.color = "green"; 
-           document.getElementsByClassName("message")[0].textContent = message;
+          document.getElementsByClassName("message")[0].textContent = message;
           if (message == "Success") {
             emitter.emit('login')  //emit ...................................
             setTimeout(() => {
@@ -68,6 +69,7 @@ export default {
 </script>
 
 <style scoped>
+
 .message {
   position: absolute;
   top: 5em;

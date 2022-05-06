@@ -1,30 +1,24 @@
 <template>
- <section id="home">
-  <section class="background-container">
-    <h1>Welcome to MyBlog!</h1>
-    <div class="auth-buttons">
-        <router-link to="/login" >Login</router-link>
-        <router-link to="/register" >Register</router-link>
-    </div>
+  <section id="home">
+    <section class="background-container">
+      <h1>Welcome to MyBlog!</h1>
+      <div class="auth-buttons">
+        <router-link to="/login">Login</router-link>
+        <router-link to="/register">Register</router-link>
+      </div>
+    </section>
   </section>
-</section>
 </template>
 
 <script>
-
 export default {
-methods:{
-     log() {
-      console.log('custom login event');
-      // this.isAuth = true
-    }
-}
+  methods: {},
 }
 </script>
 
 <style scoped>
 #home {
-  background: url('@/assets/images/home.jpg');
+  background: url("@/assets/images/home.jpg");
   background-size: cover;
   background-position: center;
   height: 100vh;
@@ -41,20 +35,24 @@ methods:{
   height: 100vh;
 }
 
-.background-container>h1 {
+.background-container > h1 {
   color: #fff;
   font-size: 50px;
 }
 
 .background-container a {
+  font-display: roboto;
   display: inline-block;
   color: #212121;
   text-decoration: none;
-  background: #fff;
+  background: rgb(223, 210, 245);
   padding: 10px 25px;
   font-size: 20px;
   margin: 50px 20px;
   transition: transform 0.3s;
+  border:2px solid rgb(113, 113, 211);
+  border-radius: 12px;
+      /* box-sizing: border-box; */
 }
 
 .background-container a:hover {
@@ -68,7 +66,7 @@ methods:{
   display: flex;
   align-items: center;
   justify-content: center;
-  background: url('@/assets/images/home.jpg');
+  background: url("@/assets/images/home.jpg");
   background-size: cover;
   background-position: center;
 }
@@ -220,7 +218,7 @@ methods:{
   display: flex;
   align-items: center;
   justify-content: center;
-  background: url('@/assets/images/home.jpg');
+  background: url("@/assets/images/home.jpg");
   background-size: cover;
   background-position: center;
 }

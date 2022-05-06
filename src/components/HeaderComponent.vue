@@ -83,6 +83,7 @@ export default {
 }
 
 #header h1 {
+  margin-left:12px;
   color: #fff;
 }
 
