@@ -1,51 +1,46 @@
 <template>
- <div>
-   <header-component /> 
-      <div class="main">
-          <router-view />
-       </div> 
-    <footer-component/>
-</div>
+  <div>
+    <header-component />
+    <div class="main">
+      <router-view />
+    </div>
+    <footer-component />
+  </div>
 </template>
 
 <script>
-import HeaderComponent from '@/components/HeaderComponent'
-import FooterComponent from '@/components/FooterComponent'
+import HeaderComponent from "@/components/HeaderComponent";
+import FooterComponent from "@/components/FooterComponent";
 
 export default {
   components: {
     HeaderComponent,
     FooterComponent,
   },
-
-  data: () => ({
-
-  }),
-  created () {
+  created() {
     if (localStorage.getItem("auth") == null) {
       this.$router.push("/").catch({});
     }
-  }
-}
+  },
+};
 </script>
 
 <style lang="scss">
-
-html, body {
-   height:100%;
-   width:100%;
-   padding:0;
-   margin:0;
+html,
+body {
+  height: 100%;
+  width: 100%;
+  padding: 0;
+  margin: 0;
 }
 
-body  {
-display: flex;
-flex-direction: column;
+body {
+  display: flex;
+  flex-direction: column;
 }
 
-.main{
+.main {
   flex: auto;
-  color:red;
- 
+  color: red;
 }
 </style>

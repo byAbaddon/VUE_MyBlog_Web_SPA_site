@@ -6,9 +6,9 @@
         <h1>Login</h1>
         <form id="form" @submit.prevent="submitLogin">
           <label for="email">Email</label>
-          <input type="text" name="email" placeholder="required" />
+          <input type="text" name="email" placeholder="required" value="koko@abv.bg" />
           <label for="password">Password</label>
-          <input type="password" name="password" placeholder="6 symbols minlength"/>
+          <input type="password" name="password" placeholder="6 symbols minlength"  value="111111" />
           <div id="btn">
             <button id="btnSubmit">Submit</button>
             <button
@@ -30,9 +30,10 @@
 
 <script>
 import loginUser from "@/services/login";
+import emitter  from 'tiny-emitter/instance'
 
 export default {
- emits: ["login"],  //TODO:
+
 
   methods: {
     btnReset(e) {
@@ -50,15 +51,15 @@ export default {
           document.getElementById("btnSubmit").style.color = "green"; 
            document.getElementsByClassName("message")[0].textContent = message;
           if (message == "Success") {
-            this.$root.$emit('login')  //emit ...
+            emitter.emit('login')  //emit ...................................
             setTimeout(() => {
               this.$router.push("/");
-            }, 2500);
+            }, 2000);
           }
           setTimeout(() => {
             document.getElementById("btnSubmit").style.color = "white";
             document.getElementsByClassName("message")[0].textContent = "";
-          }, 2000);
+          }, 1500);
         });
       }
     },

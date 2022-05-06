@@ -1,8 +1,9 @@
+
 <template>
   <div id="header">
     <h1>MyBlog</h1>
     <h2 v-show="isAuth">
-      Welcome, <span>{{ email }}!</span>!
+      Welcome, <span>{{ userName }}!</span>!
     </h2>
     <nav id="nav">
       <ul>
@@ -22,10 +23,13 @@
 </template>
 
 <script>
+import emitter  from 'tiny-emitter/instance'
+
 export default {
+
   data: () => ({
     isAuth: false, //user login?
-    email: "",
+    userName: "",
   }),
   methods: {
     logout() {
@@ -33,18 +37,19 @@ export default {
       localStorage.clear()
       this.$router.go()
     },
-
-   
   },
   mounted(){
-   
+     emitter.once('login', () => {  //get custom event if user login
+     this.isAuth = true
+     this.userName = JSON.parse(localStorage.getItem("auth")).userName
+     console.log('Custom event!', this.userName, 'login success');
+   })
   },
 
-  created() {
-    if (localStorage.getItem("auth") != null) {
-      this.isAuth = true
-      this.email = JSON.parse(localStorage.getItem("auth")).userName
-    }
+  created() {   //?????
+    // if (localStorage.getItem("auth") != null) {
+    //   this.isAuth = true
+    // }
   },
   beforeMount() {
     window.addEventListener("beforeunload", (event) => {
