@@ -1,31 +1,67 @@
 <template>
- <div id="header">
+  <div id="header">
     <h1>MyBlog</h1>
-    <h2>Welcome <span>{{email}}!</span>!</h2>
-  <nav id="nav">
+    <h2 v-show="isAuth">
+      Welcome, <span>{{ email }}!</span>!
+    </h2>
+    <nav id="nav">
       <ul>
-        <router-link to="/logout">Logout</router-link>
-        <router-link to="/">Home</router-link>
-        <router-link to="/login">Login</router-link>
-        <router-link to="/register">Register</router-link>
-        <router-link to="/about">About</router-link>
+        <li v-if="!isAuth">
+          <router-link to="/">Home</router-link>
+          <router-link to="/login">Login</router-link>
+          <router-link to="/register">Register</router-link>
+        </li>
+
+        <li v-else>
+          <router-link to="" @click="logout">Logout</router-link>
+          <router-link to="/about">About</router-link>
+        </li>
       </ul>
     </nav>
-</div>
+  </div>
 </template>
 
 <script>
 export default {
-  data: ()=> ({
-    email: 'noEmail'
-
+  data: () => ({
+    isAuth: false, //user login?
+    email: "",
   }),
-  objects:{
-  
-  }
+  methods: {
+    logout() {
+      console.log("Logout success. Storage was clear!")
+      localStorage.clear()
+      this.$router.go()
+    },
 
-}
+   
+  },
+  mounted(){
+   
+  },
+
+  created() {
+    if (localStorage.getItem("auth") != null) {
+      this.isAuth = true
+      this.email = JSON.parse(localStorage.getItem("auth")).userName
+    }
+  },
+  beforeMount() {
+    window.addEventListener("beforeunload", (event) => {
+      if (localStorage.getItem("auth") != null) {
+        //user login in this moment
+        //  localStorage.clear()
+        event.returnValue;
+        event.preventDefault()
+        //  event.stopImmediatePropagation()
+        return
+      }
+      return
+    })
+  },
+};
 </script>
+
 
 <style scoped>
 #header {
@@ -33,7 +69,7 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height:50px;
+  height: 50px;
   /* width: 100%;
   position: absolute;
   left: 0;
@@ -62,7 +98,7 @@ export default {
   color: #fff;
   text-decoration: none;
   padding: 5px;
-  margin:10px;
+  margin: 10px;
   text-align: center;
   transition: 0.5s;
 }

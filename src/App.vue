@@ -22,9 +22,9 @@ export default {
 
   }),
   created () {
-    // if (localStorage.getItem("auth") == null) {
-    //   this.$router.push("/").catch({});
-    // }
+    if (localStorage.getItem("auth") == null) {
+      this.$router.push("/").catch({});
+    }
   }
 }
 </script>

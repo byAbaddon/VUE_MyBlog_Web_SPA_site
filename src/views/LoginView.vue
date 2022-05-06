@@ -32,6 +32,8 @@
 import loginUser from "@/services/login";
 
 export default {
+ emits: ["login"],  //TODO:
+
   methods: {
     btnReset(e) {
       e.target.parentElement.parentElement.reset()
@@ -43,13 +45,13 @@ export default {
       let password = formData.get("password");
 
       if (/\w{2,}@\w{2,}\.\w{2,}/.test(email) && password.length > 5) {
-
+         e.target.reset();
         loginUser(email, password).then((message) => {
-          document.getElementById("btnSubmit").style.color = "green";
-          document.getElementsByClassName("message")[0].textContent = message;
+          document.getElementById("btnSubmit").style.color = "green"; 
+           document.getElementsByClassName("message")[0].textContent = message;
           if (message == "Success") {
+            this.$root.$emit('login')  //emit ...
             setTimeout(() => {
-              e.target.reset();
               this.$router.push("/");
             }, 2500);
           }

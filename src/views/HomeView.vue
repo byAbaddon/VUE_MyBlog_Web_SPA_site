@@ -3,8 +3,8 @@
   <section class="background-container">
     <h1>Welcome to MyBlog!</h1>
     <div class="auth-buttons">
-        <router-link to="/login">Login</router-link>
-        <router-link to="/register">Register</router-link>
+        <router-link to="/login" >Login</router-link>
+        <router-link to="/register" >Register</router-link>
     </div>
   </section>
 </section>
@@ -13,7 +13,12 @@
 <script>
 
 export default {
-
+methods:{
+     log() {
+      console.log('custom login event');
+      // this.isAuth = true
+    }
+}
 }
 </script>
 

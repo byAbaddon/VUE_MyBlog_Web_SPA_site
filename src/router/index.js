@@ -3,7 +3,6 @@ import HomeView from '@/views/HomeView'
 import LoginView from '@/views/LoginView'
 import RegisterView from '@/views/RegisterView'
 import AboutView from '@/views/AboutView'
-import LogoutView from '@/views/LogoutView'
 
 const routes = [
   {
@@ -27,11 +26,7 @@ const routes = [
     name: 'about',
     component: AboutView
   },
-  {
-    path: '/logout',
-    name: 'logout',
-    component: LogoutView
-  },
+
 ]
 
 const router = createRouter({
