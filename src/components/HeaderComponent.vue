@@ -3,7 +3,7 @@
   <div id="header">
     <h1>MyBlog</h1>
     <h2 v-show="isAuth">
-      Welcome, <span>{{ userName }}!</span>!
+      Welcome,&nbsp; <span>{{ userName }}!</span>
     </h2>
     <nav id="nav">
       <ul>
@@ -46,10 +46,11 @@ export default {
    })
   },
 
-  created() {   //?????
-    // if (localStorage.getItem("auth") != null) {
-    //   this.isAuth = true
-    // }
+  created() { 
+    if (localStorage.getItem("auth") != null) {
+      this.isAuth = true
+      this.userName = JSON.parse(localStorage.getItem("auth")).userName
+    }
   },
   beforeMount() {
     window.addEventListener("beforeunload", (event) => {
@@ -122,5 +123,6 @@ export default {
 
 #header h2 span {
   color: rgb(255, 102, 0);
+  position: absolute;
 }
 </style>

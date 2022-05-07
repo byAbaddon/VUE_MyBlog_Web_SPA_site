@@ -68,7 +68,7 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+   height: 90vh;
   background: url('@/assets/images//laptop.jpg');
   background-size: cover;
   background-position: 100%;
@@ -80,8 +80,8 @@ export default {
   justify-content: center;
   align-items: center;
   padding: 50px 60px 30px;
-  background: #fff;
-  margin-top: 80px;
+  background: aliceblue;
+  /* margin-top: 80px; */
   transition: transform 0.5s;
   border-radius: 5px;
 }
@@ -115,12 +115,13 @@ export default {
 
 #register button {
   font-size: 18px;
-  padding: 12px 10px;
+  padding: 8px 10px;
   border: none;
-  background: #212121;
+  background: cornflowerblue;
   color: #fff;
   margin-top: 30px;
   border: double;
+  border-radius: 5px;
 }
 
 #register button:hover {

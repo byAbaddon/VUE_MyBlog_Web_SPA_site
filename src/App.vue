@@ -2,21 +2,26 @@
   <div>
     <header-component />
     <div class="main">
-      <router-view />
+      <router-view  />
     </div>
     <footer-component />
   </div>
 </template>
 
-<script>
+<script>   
 import HeaderComponent from "@/components/HeaderComponent";
 import FooterComponent from "@/components/FooterComponent";
 
 export default {
+  data:()=>({
+  }),
+
   components: {
     HeaderComponent,
     FooterComponent,
   },
+
+
   created() {
     if (localStorage.getItem("auth") == null) {
       this.$router.push("/").catch({});

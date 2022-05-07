@@ -10,7 +10,7 @@
           <label for="password">Password</label>
           <input type="password" name="password" placeholder="6 symbols minlength"  value="111111" />
           <div id="btn">
-            <button id="btnSubmit">Submit</button>
+            <button id="btnSubmit">Login</button>
             <button
               @click.prevent="btnReset"
               style="color: red; background: lightpink"
@@ -81,7 +81,7 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: 90vh;
   background: url("@/assets/images/login.jpg");
   background-size: cover;
 }
@@ -92,8 +92,8 @@ export default {
   justify-content: center;
   align-items: center;
   padding: 50px 50px 30px;
-  background: #fff;
-  margin-top: 80px;
+  background: aliceblue;
+  /* margin-top: 80px; */
   border-radius: 5px;
 }
 
@@ -125,13 +125,14 @@ export default {
 
 #login button {
   font-size: 18px;
-  padding: 12px 10px;
+  padding: 8px 10px;
   border: none;
-  background: #212121;
+  background: cornflowerblue;
   color: #fff;
   margin-top: 30px;
   margin-left: 2.5em;
   border: double;
+  border-radius: 5px;
 }
 
 #login button:hover {
