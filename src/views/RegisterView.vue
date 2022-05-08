@@ -30,15 +30,17 @@ export default {
    methods:{
      submitRegistration(e){
        const [email, password, repeatPassword] = e.target.querySelectorAll('input')
-       if(/\w{2,}@\w{2,}\.\w{2,}/.test(email.value) &&  password.value.length > 5 && password.value == repeatPassword.value) {
+       
+        if(/\w{2,}@\w{2,}\.\w{2,}/.test(email.value) &&  password.value.length > 5 && password.value == repeatPassword.value) {
+      
          document.getElementById('btnSubmit').style.color = 'green'
-         e.target.reset()
+        
          registrationNewUser(email.value, password.value).then( message => {
             document.getElementsByClassName('message')[0].textContent = message
 
              if (message == 'You register was successful') {
                  setTimeout(() => {
-                  
+                    e.target.reset()
                     this.$router.push('/login')
                 }, 3500);
              } 

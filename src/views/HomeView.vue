@@ -1,57 +1,58 @@
 <template>
-         
- <section id="home">
-        <div v-if="!isA" class="secondTabLinks"> 
-            <router-link to="/create">Create</router-link>
-            <router-link to="/edit">Edit</router-link>
-            <router-link to="/details">Details</router-link>
-            <router-link to="/delete">Delete</router-link>
-         </div>
-        
-         <!-- <v-slot class="slotContent edit">  <edit-component /> </v-slot> -->
+  <section id="home">
+    <div v-if="!isAuth" class="secondTabLinks">
+      <a v-for="(button, index) in buttons" :key="index" @click="onBtnClick">{{ button }}</a>
+    </div>
+    
+    <div id="home-logged">
+       <create-component  v-if="onCurrentBtn == 'Create'"  />
+       <edit-component  v-if="onCurrentBtn == 'Edit'"  />
+    </div>
+    
 
-    <section class="background-container" v-show="isA"  >
-        <h1>Welcome to MyBlog!</h1>
-      <div class="auth-buttons"  >
+    <section class="background-container" v-show="isAuth">
+      <h1>Welcome to MyBlog!</h1>
+      <div class="auth-buttons">
         <router-link to="/login">Login</router-link>
         <router-link to="/register">Register</router-link>
       </div>
     </section>
-           
   </section>
-            
- 
 </template>
 
 <script>
-import EditComponent from '../components/EditComponent.vue'
-
+import CreateComponent from "../components/CreateComponent.vue";
+import EditComponent from "../components/EditComponent.vue";
 
 export default {
-  components: { 
-    // EditComponent
+  components: {
+    CreateComponent,
+    EditComponent,
   },
   data: () => ({
-    isA : localStorage.getItem('auth') == null  //user not login
+    isAuth: localStorage.getItem("auth") == null, //user not login
+    onCurrentBtn: '',
+    buttons: ["Create", "Edit", "Details", "Delete"],
   }),
 
-  methods: {},
-  created(){
-   
+  methods: {
+    onBtnClick(e) {
+      this.onCurrentBtn = e.target.textContent
+      document.getElementById('home-logged').style =" display: block"
+    },
   },
-}
+
+};
 </script>
 
 <style scoped>
-.slotContent{
- color: white;
-}
 
-.secondTabLinks{
+
+.secondTabLinks {
   display: flex;
   justify-content: center;
   background: darkgray;
-padding: 0.3em;
+  padding: 0.3em;
 }
 .secondTabLinks a {
   color: #212121;
@@ -60,10 +61,10 @@ padding: 0.3em;
   font-weight: bold;
 }
 
-.secondTabLinks a:hover{
+.secondTabLinks a:hover {
   color: white;
-} 
-
+  cursor: grab;
+}
 
 #home {
   background: url("@/assets/images/home.jpg");
@@ -71,9 +72,7 @@ padding: 0.3em;
   background-position: center;
   height: 90vh;
   width: 100%;
-  
 }
-
 
 .background-container {
   flex: 1;
@@ -85,23 +84,23 @@ padding: 0.3em;
   height: 90vh;
 }
 
-.background-container>h1 {
+.background-container > h1 {
   color: #fff;
   font-size: 50px;
 }
 
 .background-container a {
- display: inline-block;
-color: darkblue;
-text-decoration: none;
-background: gainsboro;
-padding: 10px 25px;
-font-size: 20px;
-margin: 50px 20px;
-transition: transform 0.3s;
-border: 1px solid darkblue;
-border-radius: 12px;
-transition: transform 0.3s;
+  display: inline-block;
+  color: darkblue;
+  text-decoration: none;
+  background: gainsboro;
+  padding: 10px 25px;
+  font-size: 20px;
+  margin: 50px 20px;
+  transition: transform 0.3s;
+  border: 1px solid darkblue;
+  border-radius: 12px;
+  transition: transform 0.3s;
 }
 
 .background-container a:hover {
@@ -115,9 +114,8 @@ transition: transform 0.3s;
   display: flex;
   align-items: center;
   justify-content: center;
-   background: url('@/assets/images/home.jpg');
+  background: url("@/assets/images/home.jpg");
   background-size: cover;
   background-position: center;
 }
-
 </style>

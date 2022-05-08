@@ -3,15 +3,15 @@
     <section class="first-section">
         <section class="background-container">
             <form action="#/edit/{{objectId}}" method="POST" class="edit-form">
-                <h1>Edit Post</h1>
+                <h1>Create Post</h1>
                 <label for="title">Title</label>
                 <input type="text" name="title" value="title">
                 <label for="category">Category</label>
                 <input type="text" name="category" value="category">
                 <label for="content">Content</label>
                 <textarea name="content" cols="30" rows="7">content</textarea>
-                <button>Edit</button>
-                <a @click="onBtnExit" id="close-btn"><img src="@/assets/images/close.png"></a>
+                <button>Create</button>
+                <a @click="onBtnExit"  id="close-btn"><img src="@/assets/images/close.png"></a>
             </form>
         </section>
     </section>
@@ -32,12 +32,13 @@ export default {
     category: 'category',
     content: 'content',
   }),
- methods:{
+  methods:{
     onBtnExit(e){
       // console.log(e.target.parentElement.parentNode);
       document.getElementById('home-logged').style =" display: none"
     }
- },
+  }
+
 }
 </script>
 
@@ -98,8 +99,8 @@ export default {
   align-self: center;
   font-size: 26px;
   margin: 10px 0 15px;
-  border-bottom: 3px dotted orange;
-  color: orangered;
+  border-bottom: 3px dotted rgb(116, 109, 214);;
+  color: rgb(116, 109, 214);;
 }
 
 .first-section form input,
@@ -155,7 +156,7 @@ img {
 button {
   font-size: 18px;
   padding: 8px 10px;
-  background: rgb(211, 79, 31);
+  background: rgb(116, 109, 214);
   color: #fff;
   margin-top: 30px;
   border: double;
