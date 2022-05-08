@@ -5,6 +5,7 @@
     </div>
     
     <div id="home-logged">
+       <all-posts-component v-if="onCurrentBtn == 'All posts'"  />
        <create-component  v-if="onCurrentBtn == 'Create'"  />
        <edit-component  v-if="onCurrentBtn == 'Edit'"  />
     </div>
@@ -21,18 +22,20 @@
 </template>
 
 <script>
+import AllPostsComponent from "@/components/AllPostsComponent.vue";
 import CreateComponent from "../components/CreateComponent.vue";
 import EditComponent from "../components/EditComponent.vue";
 
 export default {
   components: {
+    AllPostsComponent,
     CreateComponent,
     EditComponent,
   },
   data: () => ({
     isAuth: localStorage.getItem("auth") == null, //user not login
     onCurrentBtn: '',
-    buttons: ["Create", "Edit", "Details", "Delete"],
+    buttons: ["All posts", "Create", "Edit", "Details", "Delete"],
   }),
 
   methods: {

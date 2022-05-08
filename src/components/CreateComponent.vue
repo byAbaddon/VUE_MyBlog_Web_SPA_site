@@ -2,19 +2,20 @@
   <main id="home-logged">
     <section class="first-section">
         <section class="background-container">
-            <form action="#/edit/{{objectId}}" method="POST" class="edit-form">
+            <form class="edit-form" @submit.prevent="createdSubmit">
                 <h1>Create Post</h1>
                 <label for="title">Title</label>
-                <input type="text" name="title" value="title">
+                <input type="text" name="title" placeholder="Required, minlength 2">
                 <label for="category">Category</label>
-                <input type="text" name="category" value="category">
+                <input type="text" name="category" placeholder="Required, minlength 2" >
                 <label for="content">Content</label>
-                <textarea name="content" cols="30" rows="7">content</textarea>
-                <button>Create</button>
+                <textarea name="content" cols="30" rows="7"  placeholder="Required, maxlength 100"></textarea>
+                <button >Create</button>
                 <a @click="onBtnExit"  id="close-btn"><img src="@/assets/images/close.png"></a>
             </form>
         </section>
     </section>
+
     <!-- <section class="second-section">
         <h3>Posts</h3>
         <hr>
@@ -26,13 +27,32 @@
 </template>
 
 <script>
+import addPost from '@/services/createdPost'
+
+
 export default {
   data: () => ({
-    title: 'title',
-    category: 'category',
-    content: 'content',
+    title: '',
+    category: '',
+    content: '',
   }),
+
   methods:{
+   createdSubmit(e){
+    const form = new FormData(e.target)
+    const title = form.get('title')
+    const category = form.get('category')
+    const content = form.get('content')
+    const creatorEmail = JSON.parse(localStorage.getItem('auth')).email
+    console.log('click');
+    if (title && category && content && (content.length > 2 && content.length <= 100)) {
+      console.log(title,category ,content); 
+      addPost({title,category ,content, creatorEmail})
+      e.target.reset()
+    }
+    
+   },
+
     onBtnExit(e){
       // console.log(e.target.parentElement.parentNode);
       document.getElementById('home-logged').style =" display: none"
@@ -99,7 +119,7 @@ export default {
   align-self: center;
   font-size: 26px;
   margin: 10px 0 15px;
-  border-bottom: 3px dotted rgb(116, 109, 214);;
+  border-bottom: 3px dotted rgb(116, 109, 214);
   color: rgb(116, 109, 214);;
 }
 
@@ -161,5 +181,10 @@ button {
   margin-top: 30px;
   border: double;
   border-radius: 5px;
+}
+
+button:hover{
+  cursor:pointer;
+  background: rgb(96, 109, 214);
 }
 </style>

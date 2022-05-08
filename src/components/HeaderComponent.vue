@@ -14,8 +14,9 @@
         </li>
 
         <li v-else>
-          <router-link to="" @click="logout">Logout</router-link>
+          <router-link to="/">Home</router-link>
           <router-link to="/about">About</router-link>
+          <router-link to="" @click="logout">Logout</router-link>
         </li>
       </ul>
     </nav>
@@ -31,6 +32,7 @@ export default {
     isAuth: false, //user login?
     userName: "",
   }),
+
   methods: {
     logout() {
       console.log("Logout success. Storage was clear!")
@@ -119,6 +121,7 @@ export default {
 #header h2 {
   color: #fff;
   font-weight: 550;
+  margin-left: 3.5em;
 }
 
 #header h2 span {
