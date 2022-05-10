@@ -4,6 +4,8 @@ import LoginView from '@/views/LoginView'
 import RegisterView from '@/views/RegisterView'
 import AboutView from '@/views/AboutView'
 
+// import AllPostsComponent from '@/components/AllPostsComponent'
+
 const routes = [
   {
     path: '/',
@@ -26,6 +28,13 @@ const routes = [
     name: 'about',
     component: AboutView
   },
+
+  {
+    path: '/posts',
+    name: 'posts',
+    component: () => import('@/components/AllPostsComponent')
+  },
+
 
 ]
 

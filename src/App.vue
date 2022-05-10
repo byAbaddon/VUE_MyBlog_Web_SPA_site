@@ -11,7 +11,7 @@
 <script>   
 import HeaderComponent from "@/components/HeaderComponent";
 import FooterComponent from "@/components/FooterComponent";
-  
+  import { getAllPosts } from "./services/getAllPosts";
 
 
 export default {
@@ -40,6 +40,7 @@ export default {
         event.returnValue;
         event.preventDefault()
         //  event.stopImmediatePropagation()
+        
         return
       }
       return

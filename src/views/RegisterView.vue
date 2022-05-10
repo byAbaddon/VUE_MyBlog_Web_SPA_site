@@ -86,6 +86,7 @@ export default {
   /* margin-top: 80px; */
   transition: transform 0.5s;
   border-radius: 5px;
+background: linear-gradient(#c83e3e99, #c0d9ff);
 }
 
 .register-form label {
@@ -134,7 +135,7 @@ export default {
   align-self: center;
   margin-top: 30px;
   text-decoration: none;
-  color: #636e72;
+  color: sienna;
 }
 
 .color {

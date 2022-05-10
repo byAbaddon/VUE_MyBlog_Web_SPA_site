@@ -74,9 +74,25 @@ export default {
 }
 
 #header h1 {
-  margin-left:12px;
-  color: #fff;
+margin-left:12px;
+background-image: linear-gradient( -225deg, #4b6ed8 0%, #a176e1 29%, #ff1361 67%, #fff800 100% );background-size: auto auto;
+background-clip: border-box;
+background-size: 200% auto;
+background-clip: text;
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+-webkit-animation: textclip-5c833af0 15s linear infinite;
+animation: textclip-5c833af0 15s linear infinite;
+display: inline-block;
 }
+
+@keyframes textclip {
+  to {
+    background-position: 200% center;
+  }
+}
+
+
 
 #nav {
   display: flex;

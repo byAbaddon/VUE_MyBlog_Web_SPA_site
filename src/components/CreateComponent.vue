@@ -18,7 +18,11 @@
 
      <div v-show="showMessage"  class="message"> 
        <h2>Success add new post, to base!</h2>
-       <h2>Press button <span>[All posts]</span> to see posts collection... </h2>
+       <h2>Press button
+         <span>
+          <input type="button" value="All Posts" @click="onBtnAllPosts">
+        </span> to see posts collection... 
+        </h2>
      </div> 
 </main>
 </template>
@@ -57,9 +61,18 @@ export default {
 
     onBtnExit(e){
       console.log(e.target.parentElement.parentNode);
-      document.querySelector('.first-section').style =" display: none"
+      document.querySelector('.first-section').style ="display: none"
+    },
+
+    onBtnAllPosts(){
+  
     }
-  }
+  },
+
+  updated(){
+      document.querySelector('.first-section').style ="display: block"
+   }
+
 
 }
 </script>

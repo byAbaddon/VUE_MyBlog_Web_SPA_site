@@ -84,6 +84,7 @@ export default {
   height: 90vh;
   background: url("@/assets/images/login.jpg");
   background-size: cover;
+  
 }
 
 .login-form {
@@ -95,6 +96,7 @@ export default {
   background: aliceblue;
   /* margin-top: 80px; */
   border-radius: 5px;
+  background: linear-gradient(#c82b2bc9, #c0d9ff);
 }
 
 .login-form label {
@@ -143,7 +145,7 @@ export default {
   align-self: center;
   margin-top: 30px;
   text-decoration: none;
-  color: #636e72;
+  color: sienna;
 }
 
 .color {

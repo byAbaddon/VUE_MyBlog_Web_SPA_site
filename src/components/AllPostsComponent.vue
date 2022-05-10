@@ -1,6 +1,6 @@
 <template>
   <main id="home-logged">
-    <section class="second-section">
+    <section class="section">
       <h3>Posts</h3>
       <hr />
    </section>
@@ -45,17 +45,12 @@ export default {
 
   },
   
-  mounted(){
-      // getAllPosts()
-      // getAllPosts().then(posts => this.allPosts = posts)
-      // this.allPosts 
+  mounted() {
+    if (localStorage.getItem("auth") != null) {
+      getAllPosts().then(data => this.allPosts = data);
+    }
   },
-  
-  // updated(){
-  //   // console.log(posts);
-  //     this.allPosts = posts
-  // }
-
+   
   
 };
 </script>
@@ -66,18 +61,27 @@ export default {
 .posts-row{
   display: flex;
   flex-wrap: wrap;
-  background: black;
+  background: linear-gradient(rgba(9, 9, 11, 0.99),  rgba(2, 10, 30, 0.91));
   justify-content: space-around;
 }
+/* background-size: cover; */
+.section{
+  background:
+linear-gradient( rgba(69, 92, 159, 0.7) , rgba(9, 26, 77, 0.91)) , url(http://localhost:8080/img/Blog-Posts.c98ddf5b.png);  
+  background-position: center;
+  height: 10vh;
+  width: 100%;
 
-
-.second-section h3 {
-  color: antiquewhite;
+}
+.section h3 {
+  margin: 0;
+  color: khaki;
   font-size: 34px;
   text-align: center;
+  padding-top: 0.3em;
 }
 
-.second-section hr {
+.section hr {
   border: 2px solid rgb(255, 102, 0);
   border-radius: 100px;
   width: 10%;
