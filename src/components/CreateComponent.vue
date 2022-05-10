@@ -9,32 +9,30 @@
                 <label for="category">Category</label>
                 <input type="text" name="category" placeholder="Required, minlength 2" >
                 <label for="content">Content</label>
-                <textarea name="content" cols="30" rows="7"  placeholder="Required, maxlength 100"></textarea>
+                <textarea name="content" cols="30" rows="7"  placeholder="Required, maxlength 130"></textarea>
                 <button >Create</button>
                 <a @click="onBtnExit"  id="close-btn"><img src="@/assets/images/close.png"></a>
             </form>
-        </section>
+        </section> 
     </section>
 
-    <!-- <section class="second-section">
-        <h3>Posts</h3>
-        <hr>
-        <div class="posts-row">
-           show all post
-        </div>
-    </section> -->
+     <div v-show="showMessage"  class="message"> 
+       <h2>Success add new post, to base!</h2>
+       <h2>Press button <span>[All posts]</span> to see posts collection... </h2>
+     </div> 
 </main>
 </template>
 
 <script>
 import addPost from '@/services/createdPost'
+import {getAllPosts} from '@/services/getAllPosts'
 
 
 export default {
+  
+
   data: () => ({
-    title: '',
-    category: '',
-    content: '',
+   showMessage: false
   }),
 
   methods:{
@@ -44,18 +42,22 @@ export default {
     const category = form.get('category')
     const content = form.get('content')
     const creatorEmail = JSON.parse(localStorage.getItem('auth')).email
-    console.log('click');
-    if (title && category && content && (content.length > 2 && content.length <= 100)) {
-      console.log(title,category ,content); 
+    console.log('click error not fill fields');
+    if (title && category && content && (content.length > 2 && content.length <= 120)) {
+      console.log('Success add new post', title); 
       addPost({title,category ,content, creatorEmail})
       e.target.reset()
+      document.querySelector('.first-section').style =" display: none"
+      getAllPosts()
+      this.showMessage = true
+     
     }
     
    },
 
     onBtnExit(e){
-      // console.log(e.target.parentElement.parentNode);
-      document.getElementById('home-logged').style =" display: none"
+      console.log(e.target.parentElement.parentNode);
+      document.querySelector('.first-section').style =" display: none"
     }
   }
 
@@ -64,8 +66,24 @@ export default {
 
 
 <style scoped>
+.message{
+  margin-top:10em;
+}
 
 
+.message h2{
+  color: cornsilk;
+  text-align: center;
+  font-size: xx-large;
+  text-shadow: 4px 1px blueviolet;
+  margin-top: 1em;
+}
+
+.message h2 span{
+  color: rgb(32, 30, 22);
+  font-size: xx-large;
+  text-shadow: 1px 1px rgb(187, 158, 214);
+}
 .background-container {
   flex: 1;
   background: hsla(0, 0%, 13%, 0.384);

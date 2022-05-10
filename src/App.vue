@@ -2,7 +2,7 @@
   <div>
     <header-component />
     <div class="main">
-      <router-view  />
+      <router-view />
     </div>
     <footer-component />
   </div>
@@ -11,9 +11,12 @@
 <script>   
 import HeaderComponent from "@/components/HeaderComponent";
 import FooterComponent from "@/components/FooterComponent";
+  
+
 
 export default {
   data:()=>({
+ 
   }),
 
   components: {
@@ -27,6 +30,22 @@ export default {
       this.$router.push("/").catch({});
     }
   },
+
+  beforeMount() {
+    window.addEventListener("beforeunload", (event) => {
+      if (localStorage.getItem("auth") != null) {
+        
+        //user login in this moment
+        //  localStorage.clear()
+        event.returnValue;
+        event.preventDefault()
+        //  event.stopImmediatePropagation()
+        return
+      }
+      return
+    })
+  },
+
 };
 </script>
 

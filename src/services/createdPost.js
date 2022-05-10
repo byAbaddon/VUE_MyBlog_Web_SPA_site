@@ -5,7 +5,7 @@ const addPost = async (post) => {
 
   try {
     const docRef = await addDoc(collection(db, "posts"), {
-      post
+       ...post
     })
     console.log("Document written with ID: ", docRef.id)
   } catch (e) {

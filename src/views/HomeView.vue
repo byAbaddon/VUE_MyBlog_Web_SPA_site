@@ -5,9 +5,9 @@
     </div>
     
     <div id="home-logged">
-       <all-posts-component v-if="onCurrentBtn == 'All posts'"  />
+       <all-posts-component v-if="onCurrentBtn == 'All posts'" />
        <create-component  v-if="onCurrentBtn == 'Create'"  />
-       <edit-component  v-if="onCurrentBtn == 'Edit'"  />
+       <statistic-component  v-if="onCurrentBtn == 'Statistic'" />
     </div>
     
 
@@ -22,20 +22,25 @@
 </template>
 
 <script>
+
 import AllPostsComponent from "@/components/AllPostsComponent.vue";
 import CreateComponent from "../components/CreateComponent.vue";
-import EditComponent from "../components/EditComponent.vue";
+import StatisticComponent from "../components/StatisticComponent.vue";
+
+import {getAllPosts, posts}from "@/services/getAllPosts";
+
 
 export default {
   components: {
     AllPostsComponent,
     CreateComponent,
-    EditComponent,
+    StatisticComponent,
   },
   data: () => ({
     isAuth: localStorage.getItem("auth") == null, //user not login
     onCurrentBtn: '',
-    buttons: ["All posts", "Create", "Edit", "Details", "Delete"],
+    buttons: ["All posts", "Create", "Statistic",],
+    isShowAll: false,
   }),
 
   methods: {
@@ -43,10 +48,17 @@ export default {
       this.onCurrentBtn = e.target.textContent
       document.getElementById('home-logged').style =" display: block"
     },
+   
+
   },
 
+  mounted(){
+       getAllPosts()
+  },
+ 
 };
 </script>
+
 
 <style scoped>
 

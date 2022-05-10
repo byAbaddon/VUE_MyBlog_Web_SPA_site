@@ -54,19 +54,7 @@ export default {
       this.userName = JSON.parse(localStorage.getItem("auth")).userName
     }
   },
-  beforeMount() {
-    window.addEventListener("beforeunload", (event) => {
-      if (localStorage.getItem("auth") != null) {
-        //user login in this moment
-        //  localStorage.clear()
-        event.returnValue;
-        event.preventDefault()
-        //  event.stopImmediatePropagation()
-        return
-      }
-      return
-    })
-  },
+
 };
 </script>
 
