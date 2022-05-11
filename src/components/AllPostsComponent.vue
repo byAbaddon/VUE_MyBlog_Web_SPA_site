@@ -30,7 +30,7 @@ import deletePost from '@/services/deletePost'
 
 export default {
   data: () =>({
-     allPosts: posts,
+     allPosts: [],
   }),
 
 
@@ -40,12 +40,11 @@ export default {
      deletePost(currentPost.id)
      .then(e => console.log('Delete Success', currentPost.title))
      .catch(error => console.log(error))
- 
    }
 
   },
   
-  mounted() {
+mounted() {
     if (localStorage.getItem("auth") != null) {
       getAllPosts().then(data => this.allPosts = data);
     }
@@ -67,7 +66,7 @@ export default {
 /* background-size: cover; */
 .section{
   background:
-linear-gradient( rgba(69, 92, 159, 0.7) , rgba(9, 26, 77, 0.91)) , url(http://localhost:8080/img/Blog-Posts.c98ddf5b.png);  
+  linear-gradient( rgba(69, 92, 159, 0.7) , rgba(9, 26, 77, 0.91)) , url('../assets/images/posts/Blog-Posts.png');  
   background-position: center;
   height: 10vh;
   width: 100%;

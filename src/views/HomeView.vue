@@ -52,7 +52,7 @@ export default {
       this.$router.push(link);
     },
   },
-
+  
 };
 </script>
 
@@ -223,7 +223,7 @@ font-size: 10em;
 
 .background-container a {
   display: inline-block;
-  color: wheat;
+  color: white;
   text-decoration: none;
    background: rgb(11, 109, 207);
   padding: 10px 25px;

@@ -34,8 +34,16 @@ const routes = [
     name: 'posts',
     component: () => import('@/components/AllPostsComponent')
   },
-
-
+  {
+    path: '/create',
+    name: 'create',
+    component: () => import('@/components/CreateComponent')
+  },
+  {
+    path: '/statistic',
+    name: 'statistic',
+    component: () => import('@/components/StatisticComponent')
+  },
 ]
 
 const router = createRouter({

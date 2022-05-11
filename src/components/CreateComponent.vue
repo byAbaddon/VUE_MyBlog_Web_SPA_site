@@ -1,5 +1,5 @@
 <template>
-  <main id="home-logged">
+  <main id="main-blog">
     <section class="first-section">
         <section class="background-container">
             <form class="edit-form" @submit.prevent="createdSubmit">
@@ -10,33 +10,30 @@
                 <input type="text" name="category" placeholder="Required, minlength 2" >
                 <label for="content">Content</label>
                 <textarea name="content" cols="30" rows="7"  placeholder="Required, maxlength 130"></textarea>
-                <button >Create</button>
+                <button>Create</button>
                 <a @click="onBtnExit"  id="close-btn"><img src="@/assets/images/close.png"></a>
             </form>
+
+            <div class="message"> 
+                 <h2>{{message}}</h2>
+            </div> 
         </section> 
+
+
     </section>
 
-     <div v-show="showMessage"  class="message"> 
-       <h2>Success add new post, to base!</h2>
-       <h2>Press button
-         <span>
-          <input type="button" value="All Posts" @click="onBtnAllPosts">
-        </span> to see posts collection... 
-        </h2>
-     </div> 
+     
 </main>
 </template>
 
 <script>
 import addPost from '@/services/createdPost'
-import {getAllPosts} from '@/services/getAllPosts'
-
 
 export default {
   
 
   data: () => ({
-   showMessage: false
+   message: ''
   }),
 
   methods:{
@@ -46,22 +43,27 @@ export default {
     const category = form.get('category')
     const content = form.get('content')
     const creatorEmail = JSON.parse(localStorage.getItem('auth')).email
-    console.log('click error not fill fields');
+
+     console.log('click error not fill fields');
+     this.message = 'The fields are not fill correct!'
+
     if (title && category && content && (content.length > 2 && content.length <= 120)) {
       console.log('Success add new post', title); 
+      this.message = `Success add new post ${title}.`
       addPost({title,category ,content, creatorEmail})
       e.target.reset()
-      document.querySelector('.first-section').style =" display: none"
-      getAllPosts()
-      this.showMessage = true
-     
+      setTimeout(() => {
+        this.$router.push('/posts')
+      }, 1500);
     }
+    setTimeout(() => this.message = '' , 2000)
+      
+   
     
    },
 
     onBtnExit(e){
-      console.log(e.target.parentElement.parentNode);
-      document.querySelector('.first-section').style ="display: none"
+      this.$router.push('/')
     },
 
     onBtnAllPosts(){
@@ -69,9 +71,11 @@ export default {
     }
   },
 
-  updated(){
-      document.querySelector('.first-section').style ="display: block"
-   }
+  computed:{
+    isFillAllInputFields: () => {
+
+    }
+  }
 
 
 }
@@ -89,14 +93,22 @@ export default {
   text-align: center;
   font-size: xx-large;
   text-shadow: 4px 1px blueviolet;
-  margin-top: 1em;
+  margin-top: -13em;
 }
 
-.message h2 span{
-  color: rgb(32, 30, 22);
-  font-size: xx-large;
-  text-shadow: 1px 1px rgb(187, 158, 214);
+
+
+#main-blog{
+  background: url('../assets/images/addPost/add-blog.png');
+  background-size: cover;
+  background-position: center;
+  height: 90vh;
+  width: 100%;
+
+
 }
+
+
 .background-container {
   flex: 1;
   background: hsla(0, 0%, 13%, 0.384);
