@@ -138,7 +138,9 @@ category */
 }
 
 .post span {
-  color: rgb(255, 102, 0);
+  color: grey;
+  text-decoration: underline;
+   margin-left: 1em;
 }
 
 .posts-row {
