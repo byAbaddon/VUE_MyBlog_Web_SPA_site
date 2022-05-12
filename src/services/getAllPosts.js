@@ -1,15 +1,15 @@
 import { db} from '@/services/sdk'                
-import { collection, getDocs } from "firebase/firestore";  
+import { collection, getDocs} from "firebase/firestore";  
 
 let posts = []
 
 const getAllPosts = async () => {
   posts = []
-  const getPostsCollection = collection(db, "posts")                                     
+  const getPostsCollection = collection(db, "posts")                                   
   const querySnapshot = await getDocs(getPostsCollection)   
 
     querySnapshot.forEach((doc) => {
-      let allData = Object.assign({}, { id: doc.id }, doc.data())
+      let allData = Object.assign({}, {id: doc.id }, doc.data())
       posts.push(allData)
   })
 

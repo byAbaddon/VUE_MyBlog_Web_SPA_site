@@ -11,18 +11,16 @@
                 <label for="content">Content</label>
                 <textarea name="content" cols="30" rows="7"  placeholder="Required, maxlength 130"></textarea>
                 <button>Create</button>
-                <a @click="onBtnExit"  id="close-btn"><img src="@/assets/images/close.png"></a>
+                <a @click="onBtnExit"><span id="close-btn"  >&#10006;</span></a>
+                 
             </form>
 
             <div class="message"> 
                  <h2>{{message}}</h2>
             </div> 
         </section> 
-
-
     </section>
-
-     
+    
 </main>
 </template>
 
@@ -49,7 +47,7 @@ export default {
 
     if (title && category && content && (content.length > 2 && content.length <= 120)) {
       console.log('Success add new post', title); 
-      this.message = `Success add new post ${title}.`
+      this.message = `Success add new post - ${title}.`
       addPost({title,category ,content, creatorEmail})
       e.target.reset()
       setTimeout(() => {
@@ -58,35 +56,23 @@ export default {
     }
     setTimeout(() => this.message = '' , 2000)
       
-   
-    
    },
 
     onBtnExit(e){
       this.$router.push('/')
     },
 
-    onBtnAllPosts(){
-  
-    }
   },
-
-  computed:{
-    isFillAllInputFields: () => {
-
-    }
-  }
-
 
 }
 </script>
 
 
-<style scoped>
+<style scoped >
+
 .message{
   margin-top:10em;
 }
-
 
 .message h2{
   color: cornsilk;
@@ -96,18 +82,13 @@ export default {
   margin-top: -13em;
 }
 
-
-
 #main-blog{
   background: url('../assets/images/addPost/add-blog.png');
   background-size: cover;
   background-position: center;
   height: 90vh;
   width: 100%;
-
-
 }
-
 
 .background-container {
   flex: 1;
@@ -126,17 +107,23 @@ export default {
 
 .background-container a {
   display: inline-block;
-  color: #212121;
-  background: rgb(53, 13, 122);
-  padding: 10px 25px;
-  font-size: 20px;
+  padding: 2px 10px;
   margin: 50px 20px;
   transition: transform 0.3s;
-  border:2px solid rgb(113, 113, 211);
+  border:1px solid rgb(233, 6, 6);
   border-radius: 12px;
       /* box-sizing: border-box; */
 }
-
+#close-btn {
+  font-size: 30px;
+  border: none;  
+  color: red;
+  
+}
+#close-btn:hover {
+  transform: none;
+  cursor: pointer;
+}
 
 
 .first-section form,
@@ -196,18 +183,11 @@ export default {
   right: -10px;
 }
 
-.edit-form a:hover {
-  transform: none;
-}
 
 .edit-posts a:hover {
   transform: none;
 }
 
-#close-btn {
-  background: none;
-  padding: 0;
-}
 
 img {
   width: 25px;

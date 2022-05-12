@@ -11,7 +11,7 @@
 <script>   
 import HeaderComponent from "@/components/HeaderComponent";
 import FooterComponent from "@/components/FooterComponent";
-  import { getAllPosts } from "./services/getAllPosts";
+
 
 
 export default {
@@ -26,9 +26,12 @@ export default {
 
 
   created() {
-    if (localStorage.getItem("auth") == null) {
-      this.$router.push("/").catch({});
+    if (localStorage.getItem('auth') == null ) {
+        this.$router.push("/").catch(()=>{})
+      
     }
+   
+    
   },
 
   beforeMount() {
@@ -54,6 +57,12 @@ export default {
 
 html {
   font-family: sans-serif;
+ /*  Disable drag Introduced in IE 10.*/
+  -moz-user-select: -moz-none;
+   -khtml-user-select: none;
+   -webkit-user-select: none;
+   -ms-user-select: none;
+    user-select: none;
 }
 
 html, body {

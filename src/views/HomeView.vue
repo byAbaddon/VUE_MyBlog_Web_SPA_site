@@ -33,7 +33,6 @@
         <!-- line -->
         <div class="arrows">_________</div>
     </section>
-
   </section>
 </template>
 

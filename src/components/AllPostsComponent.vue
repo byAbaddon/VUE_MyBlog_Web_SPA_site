@@ -1,76 +1,92 @@
 <template>
-  <main id="home-logged">
+  <main>
     <section class="section">
       <h3>Posts</h3>
       <hr />
-   </section>
-      <div class="posts-row">
-
-        <!-- Post -->
-        <article class="post" v-for="(post, id) in allPosts" :key="id"  :id="post.id">
-          <h1>{{ post.title }}</h1>
-          <h2>
-            <span>{{ post.category }}</span>
-          </h2>
-          <p>{{ post.content }}</p>
-          <div class="buttons">
-            <a @click="onBtnDetails" id="details-button">Details</a>
-            <a @click="onBtnEdit" id="edit-button">Edit</a>
-            <a @click="onBtnDelete" id="delete-button">Delete</a>
-          </div>
-         </article>
-      </div>
- 
+    </section>
+    <div class="posts-row">
+      <!-- Post -->
+      <article
+        class="post"
+        v-for="(post, id) in allPosts"
+        :key="id"
+        :id="post.id"
+      >
+        <h1>{{ post.title }}</h1>
+        <h2>
+          <span>{{ post.category }}</span>
+        </h2>
+        <p>{{ post.content }}</p>
+        <div class="buttons">
+          <a @click="onBtn" id="details-button">Details</a>
+          <a @click="onBtn" id="edit-button">Edit</a>
+          <a @click="onBtn" id="delete-button">Delete</a>
+        </div>
+      </article>
+    </div>
+      <details-dialog />
+      <delete-dialog />
+      <edit-dialog />
   </main>
 </template>
 
 <script>
-import {getAllPosts, posts}from "@/services/getAllPosts";
-import deletePost from '@/services/deletePost'
+import { getAllPosts, posts } from "@/services/getAllPosts"
+import DetailsDialog from "./modalDialogs/DetailsDialog"
+import EditDialog from "./modalDialogs/EditDialog"
+import DeleteDialog from "./modalDialogs/DeleteDialog"
+import emitter  from 'tiny-emitter/instance'
+
 
 export default {
-  data: () =>({
-     allPosts: [],
+   components: {
+     DetailsDialog,
+     EditDialog,
+     DeleteDialog
+
+   },
+  data: () => ({
+    allPosts: '',
   }),
 
-
-  methods:{
-   onBtnDelete(e){
-     let currentPost =e.currentTarget.parentNode.offsetParent 
-     deletePost(currentPost.id)
-     .then(e => console.log('Delete Success', currentPost.title))
-     .catch(error => console.log(error))
-   }
-
+  methods: {
+     onBtn(e){
+       const btnName = e.target.textContent
+       const currentPostId = e.currentTarget.parentNode.offsetParent.id
+       if (btnName == 'Details') emitter.emit('on-details', currentPostId)
+       if (btnName == 'Edit') emitter.emit('on-edit', currentPostId)
+       if (btnName == 'Delete') emitter.emit('on-delete', currentPostId)
+     }
   },
-  
-mounted() {
-    if (localStorage.getItem("auth") != null) {
-      getAllPosts().then(data => this.allPosts = data);
-    }
+
+  mounted() {
+    console.log("All  mounted", this.post);
+    getAllPosts()
+      .then((data) => (this.allPosts = posts))
+      .catch((e) => console.log("error ", e.message));
   },
-   
-  
+
 };
 </script>
 
 
+
 <style scoped>
 
-.posts-row{
+
+.posts-row {
   display: flex;
   flex-wrap: wrap;
-  background: linear-gradient(rgba(9, 9, 11, 0.99),  rgba(2, 10, 30, 0.91));
+  background: linear-gradient(rgba(9, 9, 11, 0.99), rgba(2, 10, 30, 0.91));
   justify-content: space-around;
 }
 /* background-size: cover; */
-.section{
-  background:
-  linear-gradient( rgba(69, 92, 159, 0.7) , rgba(9, 26, 77, 0.91)) , url('../assets/images/posts/Blog-Posts.png');  
+.section {
+  background: linear-gradient(rgba(69, 92, 159, 0.7), rgba(9, 26, 77, 0.91)),
+    url("../assets/images/posts/Blog-Posts.png");
   background-position: center;
   height: 10vh;
   width: 100%;
-
 }
 .section h3 {
   margin: 0;
@@ -88,19 +104,18 @@ mounted() {
 }
 
 .post {
-position: relative;
-word-wrap: break-word;
-box-shadow: 1px 1px 5px gray;
-padding: 20px;
-border-radius: 5px;
-min-width: 20em;
-height: 70%;
-margin: 30px 20px;
-background: wheat;
-max-width: 20em;
-min-height: 16em;
-max-height: 16em;
-
+  position: relative;
+  word-wrap: break-word;
+  box-shadow: 1px 1px 5px gray;
+  padding: 20px;
+  border-radius: 5px;
+  min-width: 20em;
+  height: 70%;
+  margin: 30px 20px;
+  background: wheat;
+  max-width: 20em;
+  min-height: 16em;
+  max-height: 16em;
 }
 
 /* title */
@@ -179,3 +194,5 @@ category */
   cursor: pointer;
 }
 </style>
+
+
