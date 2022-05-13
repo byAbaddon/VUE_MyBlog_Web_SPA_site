@@ -29,17 +29,17 @@ export default {
     },
 
     onAgreeDeletePost() {
-    
       deletePost(this.postId)
-        .then((e) => {
+        .then(e => {
           console.log("Delete Success")
           this.message = "Post was DELETED Success!"
            
+          this.$router.push('/statistic')
+
           setTimeout(() => {
+            this.$router.back()
             this.showDialog = !this.showDialog
-          }, 1000);
-          
-         
+          }, 1000); 
         })
         .catch((error) => console.log(error));
     },
