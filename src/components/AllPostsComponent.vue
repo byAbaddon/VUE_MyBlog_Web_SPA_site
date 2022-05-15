@@ -35,7 +35,9 @@ import DetailsDialog from "./modalDialogs/DetailsDialog"
 import EditDialog from "./modalDialogs/EditDialog"
 import DeleteDialog from "./modalDialogs/DeleteDialog"
 import emitter  from 'tiny-emitter/instance'
-import listenerRealTime from "@/services/listenerRealTime"
+
+import { db} from '@/services/sdk'      
+import { collection, onSnapshot } from "firebase/firestore";
 
 
 export default {
@@ -46,31 +48,22 @@ export default {
 
    },
   data: () => ({
-    allPosts: ''
+    allPosts: [],
   }),
 
   methods: {
      onBtn(e){
        const btnName = e.target.textContent
        const currentPostId = e.currentTarget.parentNode.offsetParent.id
-       console.log(currentPostId);
        if (btnName == 'Details') emitter.emit('on-details', currentPostId)
        if (btnName == 'Edit') emitter.emit('on-edit', currentPostId)
        if (btnName == 'Delete') emitter.emit('on-delete', currentPostId)
+      
      }
   },
   
-
- mounted() {
-   console.log('load collection' , this.$allPosts);
-  setTimeout(() => {
-    this.$allPosts = listenerRealTime
-    this.allPosts = this.$allPosts
-    console.log('Mounted Component ',  listenerRealTime)
-  }, 700);
-
-  
-  
+ created() {
+    onSnapshot(collection(db, "posts"), (doc) => doc.docs.forEach (x => this.allPosts.push(x.data())))
   },
 
 };

@@ -9,7 +9,7 @@
                 <label for="category">Category</label>
                 <input type="text" name="category" placeholder="Required, minlength 2" >
                 <label for="content">Content</label>
-                <textarea name="content" cols="30" rows="7"  placeholder="Required, maxlength 130"></textarea>
+                <textarea name="content" cols="30" rows="7"  placeholder="Required, maxlength 160"></textarea>
                 <button>Create</button>
                 <a @click="onBtnExit"><span id="close-btn"  >&#10006;</span></a>
                  
@@ -45,7 +45,7 @@ export default {
      console.log('click error not fill fields');
      this.message = 'The fields are not fill correct!'
 
-    if (title && category && content && (content.length > 2 && content.length <= 120)) {
+    if (title && category && content && (content.length > 2 && content.length <= 160)) {
       console.log('Success add new post', title); 
       this.message = `Success add new post - ${title}.`
       addPost({title,category ,content, creatorEmail})

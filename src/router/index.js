@@ -44,6 +44,12 @@ const routes = [
     name: 'statistic',
     component: () => import('@/components/StatisticComponent')
   },
+  {
+    path: '/:pathMatch(.*)*',
+    name: 'not-found',
+    component: () => import('@/views/NotFoundView')
+  },
+
 ]
 
 const router = createRouter({
