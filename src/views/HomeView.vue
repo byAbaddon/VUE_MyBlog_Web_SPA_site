@@ -61,9 +61,9 @@ export default {
 
 .content {
   text-align: center;
-display: flex;
-justify-content: space-around;
-margin-right: 36em;
+  display: flex;
+  justify-content: space-around;
+  margin-right: 36em;
 }
 
 .content h2 {
