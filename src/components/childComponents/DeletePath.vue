@@ -1,6 +1,6 @@
 <template>
   <div>
- <h1>Statistic</h1>
+ <h1>Delete Success</h1>
     <section>
 
     </section>
@@ -17,7 +17,7 @@ export default {
 
 <style scoped>
 section {
-  background: url("../assets/images/deletePost/deleteImage.jpg");
+  background: url("@/assets/images/deletePost/deleteImage.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -31,7 +31,7 @@ h1{
 
 
 
-  color:beige;
+  color:rgb(214, 214, 6);
   text-align: center;
 }
 </style>

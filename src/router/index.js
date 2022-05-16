@@ -32,8 +32,23 @@ const routes = [
   {
     path: '/posts',
     name: 'posts',
-    component: () => import('@/components/AllPostsComponent')
+    component: () => import('@/components/AllPostsComponent'),
   },
+
+
+
+  {
+    path: '/posts/edit',
+    name: 'edit',
+    component: () => import('@/components/childComponents/EditPath'),
+
+  },
+   
+  {
+    path: '/posts/delete',
+    component: () => import('@/components/childComponents/DeletePath'),
+  },
+ 
   {
     path: '/create',
     name: 'create',

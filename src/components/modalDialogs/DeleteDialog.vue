@@ -34,12 +34,12 @@ export default {
           console.log("Delete Success")
           this.message = "Post was DELETED Success!"
            
-          this.$router.push('/statistic')
+          this.$router.push('/posts/delete')
 
           setTimeout(() => {
             this.$router.back()
             this.showDialog = !this.showDialog
-          }, 1000); 
+          }, 3000); 
         })
         .catch((error) => console.log(error));
     },

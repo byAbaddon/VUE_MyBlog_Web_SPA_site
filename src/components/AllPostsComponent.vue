@@ -25,8 +25,8 @@
       </article>
     </div>
       <details-dialog :allPosts="allPosts"/>
+      <edit-dialog  :allPosts="allPosts"/>
       <delete-dialog />
-      <edit-dialog />
   </main>
 </template>
 
@@ -34,7 +34,7 @@
 import DetailsDialog from "./modalDialogs/DetailsDialog"
 import EditDialog from "./modalDialogs/EditDialog"
 import DeleteDialog from "./modalDialogs/DeleteDialog"
-import emitter  from 'tiny-emitter/instance'
+import emitter from 'tiny-emitter/instance'
 
 import { db} from '@/services/sdk'      
 import { collection, onSnapshot } from "firebase/firestore";
@@ -64,7 +64,7 @@ export default {
   },
   
  created() {
-    onSnapshot(collection(db, "posts"), (doc) => doc.docs.forEach (x => this.allPosts.push(x.data())))  
+    onSnapshot(collection(db, "posts"), (doc) => doc.docs.forEach (x => this.allPosts.push(x.data())))
   },
 
 };

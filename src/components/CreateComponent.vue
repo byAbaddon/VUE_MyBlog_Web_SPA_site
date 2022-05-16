@@ -149,8 +149,8 @@ export default {
   align-self: center;
   font-size: 26px;
   margin: 10px 0 15px;
-  border-bottom: 3px dotted rgb(116, 109, 214);
-  color: rgb(116, 109, 214);;
+  border-bottom: 3px dotted darkorchid;
+  color: darkorchid;
 }
 
 .first-section form input,
@@ -199,8 +199,8 @@ img {
 button {
   font-size: 18px;
   padding: 8px 10px;
-  background: rgb(116, 109, 214);
-  color: #fff;
+  background: darkorchid;
+  color: rgb(241, 241, 241);
   margin-top: 30px;
   border: double;
   border-radius: 5px;
@@ -208,6 +208,7 @@ button {
 
 button:hover{
   cursor:pointer;
-  background: rgb(96, 109, 214);
+background: darkorchid;
 }
+
 </style>

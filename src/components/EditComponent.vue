@@ -1,37 +1,37 @@
 
 <template>
-  <main id="main-blog">
+  <main id="main-blog" >
     <section class="first-section">
         <section class="background-container">
             <form class="edit-form" @submit.prevent="createdSubmit">
-                <h1>Create Post</h1>
+                <h1>Edit Post</h1>
                 <label for="title">Title</label>
-                <input type="text" name="title" placeholder="Required, minlength 2">
+                <input type="text" name="title" placeholder="Required, minlength 2" :value="postData.title">
                 <label for="category">Category</label>
-                <input type="text" name="category" placeholder="Required, minlength 2" >
+                <input type="text" name="category" placeholder="Required, minlength 2" :value="postData.category">
                 <label for="content">Content</label>
-                <textarea name="content" cols="30" rows="7"  placeholder="Required, maxlength 160"></textarea>
+                <textarea name="content" cols="30" rows="7"  placeholder="Required, maxlength 160"
+                 :value="postData.content" > </textarea>
                 <button>Create</button>
                 <a @click="onBtnExit"><span id="close-btn"  >&#10006;</span></a>
-                 
+                <div class="message"> <h2>{{message}}</h2></div> 
             </form>
-
-            <div class="message"> 
-                 <h2>{{message}}</h2>
-            </div> 
-        </section> 
+          </section> 
     </section>
     
 </main>
 </template>
 
 <script>
-import addPost from '@/services/createdPost'
+import emitter from 'tiny-emitter/instance'
+import updatePost from '@/services//updatedPost'
+import { RouterLink } from 'vue-router'
 
 export default {
-  
+ 
 
   data: () => ({
+   postData: [],
    message: ''
   }),
 
@@ -41,30 +41,37 @@ export default {
     const title = form.get('title')
     const category = form.get('category')
     const content = form.get('content')
-    const creatorEmail = JSON.parse(localStorage.getItem('auth')).email
+    // const creatorEmail = JSON.parse(localStorage.getItem('auth')).email
 
-     console.log('click error not fill fields');
+     console.log('Click error not fill fields');
      this.message = 'The fields are not fill correct!'
 
     if (title && category && content && (content.length > 2 && content.length <= 160)) {
-      console.log('Success add new post', title); 
-      this.message = `Success add new post - ${title}.`
-      addPost({title,category ,content, creatorEmail})
+      console.log('Success edit post', title); 
+      this.message = `Success edit post - ${title}.`
+      updatePost( this.postData.id ,{title, category ,content})
       e.target.reset()
+      this.$router.push({path: '/posts/edit'})
       setTimeout(() => {
         this.$router.push('/posts')
-      }, 1500);
+      }, 3000);
     }
     setTimeout(() => this.message = '' , 2000)
       
    },
 
-    onBtnExit(e){
-      this.$router.push('/')
+    onBtnExit(){
+      emitter.emit('exit')
+      // this.$router.push('/')
+     
     },
 
   },
 
+  mounted(){
+    emitter.on('postData', data =>  this.postData = data) 
+  }
+ 
 }
 </script>
 
@@ -72,24 +79,19 @@ export default {
 <style scoped >
 
 .message{
-  margin-top:10em;
+  margin-top:0em;
 }
 
 .message h2{
-  color: cornsilk;
+  color: #e05b27;
   text-align: center;
-  font-size: xx-large;
-  text-shadow: 4px 1px blueviolet;
-  margin-top: -13em;
+  font-size: larger;
+  margin-top: 1em;
+  margin: 0;
+  margin-top: 0px;  
+  margin-top: 12px;
 }
 
-#main-blog{
-  background: url('../assets/images/addPost/add-blog.png');
-  background-size: cover;
-  background-position: center;
-  height: 90vh;
-  width: 100%;
-}
 
 .background-container {
   flex: 1;
@@ -98,7 +100,7 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 87vh;
+  height: 0vh;
 }
 
 .background-container  h1 {
@@ -150,8 +152,8 @@ export default {
   align-self: center;
   font-size: 26px;
   margin: 10px 0 15px;
-  border-bottom: 3px dotted rgb(116, 109, 214);
-  color: rgb(116, 109, 214);;
+  border-bottom: 3px dotted rgb(11, 109, 207);
+  color: rgb(11, 109, 207);
 }
 
 .first-section form input,
@@ -200,7 +202,7 @@ img {
 button {
   font-size: 18px;
   padding: 8px 10px;
-  background: rgb(116, 109, 214);
+ background: rgb(11, 109, 207);
   color: #fff;
   margin-top: 30px;
   border: double;
@@ -209,6 +211,6 @@ button {
 
 button:hover{
   cursor:pointer;
-  background: rgb(96, 109, 214);
+  background: rgb(11, 109, 207);
 }
 </style>
