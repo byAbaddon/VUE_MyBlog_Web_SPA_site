@@ -6,19 +6,23 @@
           <span class="agree" @click="onAgreeDeletePost"> &#x2705;</span>
           <span class="close" @click="onCloseDialog">&#10006;</span>
         </div>
-        <p>Edit dialog</p>
-        <p>{{message}}</p>
+         
       </div>
     </div>
 </template>
 
 <script>
-import deletePost from "@/services/deletePost";
-import { getAllPosts, posts } from "@/services/getAllPosts"
+<details-dialog />
+
 import emitter from 'tiny-emitter/instance'
 
+
 export default {
+
   data: () => ({
+   components:{
+   },
+
     message: 'Are you sure to want to delete this post?',
     showDialog: false,
     postId: '',

@@ -24,7 +24,7 @@
         </div>
       </article>
     </div>
-      <details-dialog />
+      <details-dialog :allPosts="allPosts"/>
       <delete-dialog />
       <edit-dialog />
   </main>
@@ -53,6 +53,7 @@ export default {
 
   methods: {
      onBtn(e){
+      
        const btnName = e.target.textContent
        const currentPostId = e.currentTarget.parentNode.offsetParent.id
        if (btnName == 'Details') emitter.emit('on-details', currentPostId)
@@ -63,7 +64,7 @@ export default {
   },
   
  created() {
-    onSnapshot(collection(db, "posts"), (doc) => doc.docs.forEach (x => this.allPosts.push(x.data())))
+    onSnapshot(collection(db, "posts"), (doc) => doc.docs.forEach (x => this.allPosts.push(x.data())))  
   },
 
 };

@@ -1,49 +1,95 @@
+
 <template>
-  <main id="home-logged">
+  <main id="main-blog">
     <section class="first-section">
         <section class="background-container">
-            <form action="#/edit/{{objectId}}" method="POST" class="edit-form">
-                <h1>Edit Post</h1>
+            <form class="edit-form" @submit.prevent="createdSubmit">
+                <h1>Create Post</h1>
                 <label for="title">Title</label>
-                <input type="text" name="title" value="title">
+                <input type="text" name="title" placeholder="Required, minlength 2">
                 <label for="category">Category</label>
-                <input type="text" name="category" value="category">
+                <input type="text" name="category" placeholder="Required, minlength 2" >
                 <label for="content">Content</label>
-                <textarea name="content" cols="30" rows="7">content</textarea>
-                <button>Edit</button>
-                <a @click="onBtnExit" id="close-btn"><img src="@/assets/images/close.png"></a>
+                <textarea name="content" cols="30" rows="7"  placeholder="Required, maxlength 160"></textarea>
+                <button>Create</button>
+                <a @click="onBtnExit"><span id="close-btn"  >&#10006;</span></a>
+                 
             </form>
-        </section>
+
+            <div class="message"> 
+                 <h2>{{message}}</h2>
+            </div> 
+        </section> 
     </section>
-    <!-- <section class="second-section">
-        <h3>Posts</h3>
-        <hr>
-        <div class="posts-row">
-           show all post
-        </div>
-    </section> -->
+    
 </main>
 </template>
 
 <script>
+import addPost from '@/services/createdPost'
+
 export default {
+  
+
   data: () => ({
-    title: 'title',
-    category: 'category',
-    content: 'content',
+   message: ''
   }),
- methods:{
-    onBtnExit(e){
-      // console.log(e.target.parentElement.parentNode);
-      document.getElementById('home-logged').style =" display: none"
+
+  methods:{
+   createdSubmit(e){
+    const form = new FormData(e.target)
+    const title = form.get('title')
+    const category = form.get('category')
+    const content = form.get('content')
+    const creatorEmail = JSON.parse(localStorage.getItem('auth')).email
+
+     console.log('click error not fill fields');
+     this.message = 'The fields are not fill correct!'
+
+    if (title && category && content && (content.length > 2 && content.length <= 160)) {
+      console.log('Success add new post', title); 
+      this.message = `Success add new post - ${title}.`
+      addPost({title,category ,content, creatorEmail})
+      e.target.reset()
+      setTimeout(() => {
+        this.$router.push('/posts')
+      }, 1500);
     }
- },
+    setTimeout(() => this.message = '' , 2000)
+      
+   },
+
+    onBtnExit(e){
+      this.$router.push('/')
+    },
+
+  },
+
 }
 </script>
 
 
-<style scoped>
+<style scoped >
 
+.message{
+  margin-top:10em;
+}
+
+.message h2{
+  color: cornsilk;
+  text-align: center;
+  font-size: xx-large;
+  text-shadow: 4px 1px blueviolet;
+  margin-top: -13em;
+}
+
+#main-blog{
+  background: url('../assets/images/addPost/add-blog.png');
+  background-size: cover;
+  background-position: center;
+  height: 90vh;
+  width: 100%;
+}
 
 .background-container {
   flex: 1;
@@ -62,17 +108,23 @@ export default {
 
 .background-container a {
   display: inline-block;
-  color: #212121;
-  background: rgb(53, 13, 122);
-  padding: 10px 25px;
-  font-size: 20px;
+  padding: 2px 10px;
   margin: 50px 20px;
   transition: transform 0.3s;
-  border:2px solid rgb(113, 113, 211);
+  border:1px solid rgb(233, 6, 6);
   border-radius: 12px;
       /* box-sizing: border-box; */
 }
-
+#close-btn {
+  font-size: 30px;
+  border: none;  
+  color: red;
+  
+}
+#close-btn:hover {
+  transform: none;
+  cursor: pointer;
+}
 
 
 .first-section form,
@@ -98,8 +150,8 @@ export default {
   align-self: center;
   font-size: 26px;
   margin: 10px 0 15px;
-  border-bottom: 3px dotted orange;
-  color: orangered;
+  border-bottom: 3px dotted rgb(116, 109, 214);
+  color: rgb(116, 109, 214);;
 }
 
 .first-section form input,
@@ -132,18 +184,11 @@ export default {
   right: -10px;
 }
 
-.edit-form a:hover {
-  transform: none;
-}
 
 .edit-posts a:hover {
   transform: none;
 }
 
-#close-btn {
-  background: none;
-  padding: 0;
-}
 
 img {
   width: 25px;
@@ -155,10 +200,15 @@ img {
 button {
   font-size: 18px;
   padding: 8px 10px;
-  background: rgb(211, 79, 31);
+  background: rgb(116, 109, 214);
   color: #fff;
   margin-top: 30px;
   border: double;
   border-radius: 5px;
+}
+
+button:hover{
+  cursor:pointer;
+  background: rgb(96, 109, 214);
 }
 </style>

@@ -1,58 +1,48 @@
 <template>
-    <div v-show="showDialog" class="header-modal" @onDialog="odDialog" >
-      <!-- Modal content -->
-      <div class="modal">
-        <div class="buttons">
-          <span class="agree" @click="onAgreeDeletePost"> &#x2705;</span>
-          <span class="close" @click="onCloseDialog">&#10006;</span>
-        </div>
-        <p>Details dialog</p>
-        <p>{{message}}</p>
+  <div v-show="showDialog" class="header-modal" @onDialog="odDialog">
+    <!-- Modal content -->
+
+    <div class="modal">
+      <div class="buttons">
+        <span class="close" @click="onCloseDialog">&#10006;</span>
       </div>
+      <section>
+        <div><span>Title:</span> {{ postData.title }}</div>
+        <div><span>Category:</span> {{ postData.category }}</div>
+
+        <div><span>Content:</span> {{ postData.content }}</div>
+      </section>
+
+      <!-- <details-dialog /> -->
     </div>
+  </div>
 </template>
 
 <script>
-import deletePost from "@/services/deletePost";
-import { getAllPosts, posts } from "@/services/getAllPosts"
-import emitter from 'tiny-emitter/instance'
+import emitter from "tiny-emitter/instance";
 
 export default {
-  data: () => ({
-    message: 'Are you sure to want to delete this post?',
-    showDialog: false,
-    postId: '',
+  props: ["allPosts"],
 
+  data: () => ({
+    postData: "",
+    showDialog: false,
   }),
   methods: {
     onCloseDialog() {
-      this.showDialog =  false
-    },
-
-    onAgreeDeletePost() {
-    
-      deletePost(this.postId)
-        .then((e) => {
-          console.log("Delete Success")
-          this.message = "Post was DELETED Success!"
-           
-          setTimeout(() => {
-            this.showDialog = !this.showDialog
-          }, 1000);
-          
-         
-        })
-        .catch((error) => console.log(error));
+      this.showDialog = false;
     },
   },
 
-  mounted(){
-    emitter.on('on-details', (currentPostId) => {
-         this.postId = currentPostId
-         this.showDialog = !this.showDialog
+  mounted() {
+    emitter.on("on-details", (currentPostId) => {
+      this.showDialog = !this.showDialog;
+      this.postData = this.allPosts.filter((x) => x.id == currentPostId)[0];
 
-     })
-  }
+      //  const {title, category ,content}  =
+      //  console.log(title, category ,content);
+    });
+  },
 };
 </script>
 
@@ -82,9 +72,20 @@ export default {
   padding: 20px;
   border: 1px solid #888;
   border-radius: 12px;
-  width: 30%; /* Could be more or less, depending on screen size */
-  height: 4em;
-  background: linear-gradient(rgb(138, 29, 29), blue);
+  width: 34%;
+  height: 12em;
+  background: linear-gradient(rgb(71, 57, 136), #131313);
+  /* background: linear-gradient(rgb(138, 29, 29), blue); */
+}
+
+.modal div {
+  margin: 1em auto;
+  color: khaki;
+}
+
+.modal span {
+  margin-right: 4px;
+  color: #8ce7f0;
 }
 
 /* The Close Button */
@@ -99,11 +100,11 @@ export default {
   margin-bottom: 2px;
 }
 
-.close {
-  font-size: 38px;
+span.close:nth-child(1) {
+  font-size: 36px;
   color: red;
   position: relative;
-  top: 3px;
+  top: -0.5em;
 }
 
 .agree:hover,
