@@ -1,18 +1,12 @@
 <template>
   <div>
- <h1>The post was successfully deleted !</h1>
-    <section>
-
-    </section>
-
+    <h1>The post was successfully deleted !</h1>
+    <section></section>
   </div>
- 
 </template>
 
 <script>
-export default {
-
-}
+export default {};
 </script>
 
 <style scoped>
@@ -26,15 +20,13 @@ section {
   margin: 3em auto 5.9em;
 }
 
-
-h1 {  
-color: #FF2B2A;
-text-align: center;
-padding-bottom: 0em;
-font-style: ;
-text-transform: uppercase;
-text-decoration: underline;
-margin-top: 2.2em;
-
+h1 {
+  color: #ff2b2a;
+  text-align: center;
+  padding-bottom: 0em;
+  font-style: ;
+  text-transform: uppercase;
+  text-decoration: underline;
+  margin-top: 2.2em;
 }
 </style>

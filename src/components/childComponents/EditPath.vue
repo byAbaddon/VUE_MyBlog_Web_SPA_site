@@ -1,15 +1,12 @@
 <template>
   <div>
     <h1>The post was successfully edited !</h1>
-    <section> </section>
+    <section></section>
   </div>
- 
 </template>
 
 <script>
-export default {
-
-}
+export default {};
 </script>
 
 <style scoped>
@@ -23,15 +20,13 @@ section {
   margin: 3em auto 5.9em;
 }
 
-
-h1 {  
-color: #0D0D3F;
-text-align: center;
-padding-bottom: 0em;
-font-style: ;
-text-transform: uppercase;
-text-decoration: underline;
-margin-top: 2.2em;
-
+h1 {
+  color: #0d0d3f;
+  text-align: center;
+  padding-bottom: 0em;
+  font-style: ;
+  text-transform: uppercase;
+  text-decoration: underline;
+  margin-top: 2.2em;
 }
 </style>

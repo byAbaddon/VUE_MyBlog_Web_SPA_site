@@ -49,16 +49,18 @@ export default {
          e.target.reset();
          
         loginUser(email, password).then((message) => {
-          document.getElementById("btnSubmit").style.color = "green"; 
+          document.querySelector("#btnSubmit").style.color = "green"; 
           document.getElementsByClassName("message")[0].textContent = message;
           if (message == "Success") {
             emitter.emit('login')  //emit ...................................
             setTimeout(() => {
               this.$router.push("/");
             }, 2000);
+          } else{
+              document.querySelector("#btnSubmit").style.color = "white";
           }
           setTimeout(() => {
-            document.getElementById("btnSubmit").style.color = "white";
+            // document.querySelector("#btnSubmit").style.color = "white";
             document.getElementsByClassName("message")[0].textContent = "";
           }, 1500);
         });

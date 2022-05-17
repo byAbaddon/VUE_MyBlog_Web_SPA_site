@@ -17,11 +17,19 @@
           <span>{{ post.category }}</span>
         </h2>
         <p>{{ post.content }}</p>
-        <div class="buttons">
-          <a @click="onBtn" id="details-button">Details</a>
-          <a @click="onBtn" id="edit-button">Edit</a>
-          <a @click="onBtn" id="delete-button">Delete</a>
-        </div>
+
+   
+          <div v-if="currentUserEmail == post.creatorEmail" class="buttons">     
+             <a @click="onBtn" class="details-button">Details</a>
+             <a @click="onBtn" class="edit-button">Edit</a>
+             <a @click="onBtn" class="delete-button">Delete</a>
+          </div>
+          <div v-else class="buttons">
+            <a @click="onBtn" class="details-button">Details</a>
+            <a @click="onBtn" class="locked-edit">Locked &#128274;</a>
+            <a @click="onBtn" class="locked-delete">Locked &#128274;</a>
+          </div>
+          
       </article>
     </div>
       <details-dialog :allPosts="allPosts"/>
@@ -49,13 +57,13 @@ export default {
    },
   data: () => ({
     allPosts: [],
+    currentUserEmail: JSON.parse(localStorage.getItem('auth')).email,  
   }),
-
   methods: {
-     onBtn(e){
-      
+     onBtn(e){  
        const btnName = e.target.textContent
        const currentPostId = e.currentTarget.parentNode.offsetParent.id
+
        if (btnName == 'Details') emitter.emit('on-details', currentPostId)
        if (btnName == 'Edit') emitter.emit('on-edit', currentPostId)
        if (btnName == 'Delete') emitter.emit('on-delete', currentPostId)
@@ -73,7 +81,6 @@ export default {
 
 
 <style scoped>
-
 
 .posts-row {
   display: flex;
@@ -158,9 +165,9 @@ category */
   top: 15em;
 }
 
-#details-button,
-#delete-button,
-#edit-button {
+.details-button,
+.delete-button,
+.edit-button {
   border-radius: 5px;
   text-decoration: none;
   text-align: center;
@@ -174,28 +181,57 @@ category */
   width: 80px;
 }
 
-#details-button {
+.details-button {
   right: 0px;
   background: rgb(145, 165, 33);
 }
 
-#edit-button {
+.edit-button {
   left: 30px;
   background: rgb(11, 109, 207);
   margin-left: 10px;
 }
 
-#delete-button {
+.delete-button {
   right: 0px;
   background: red;
   margin-left: 10px;
 }
 
-#edit-button:hover,
-#delete-button:hover,
-#details-button {
+.edit-button,
+.delete-button,
+.details-button:hover {
   cursor: pointer;
 }
+
+.locked-edit {
+  color: white;
+  left: 30px;
+  background: rgb(11, 109, 207);
+  margin-left: 0px;
+  justify-content: initial;
+  padding: 11px;
+  margin-left: 10px;
+  border-radius: 5px;
+}
+
+.locked-delete {
+  color: white;
+  left: 30px;
+  background: red;
+  margin-left: 0px;
+  justify-content: initial;
+  padding: 11px;
+  margin-left: 10px;
+  border-radius: 5px;
+}
+
+.locked-edit 
+.locked-delete:hover {
+  cursor: not-allowed;
+}
+
+
 </style>
 
 

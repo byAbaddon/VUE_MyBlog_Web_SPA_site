@@ -49,7 +49,6 @@ export default {
     emitter.on('on-delete', (currentPostId) => {
          this.postId = currentPostId
          this.showDialog = !this.showDialog
-
      })
   }
 };
