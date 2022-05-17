@@ -1,4 +1,4 @@
-# Simle blog_web_spa_vue3
+# Simle blog_web_spa
 ## Using vue 3 and ordinary css
 
 
