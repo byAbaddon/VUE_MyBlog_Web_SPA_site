@@ -24,7 +24,7 @@ h1 {
   color: #0d0d3f;
   text-align: center;
   padding-bottom: 0em;
-  font-style: ;
+  font-style: underline;
   text-transform: uppercase;
   text-decoration: underline;
   margin-top: 2.2em;

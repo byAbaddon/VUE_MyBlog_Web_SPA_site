@@ -41,7 +41,7 @@
 export default {
   data: () => ({
     isAuth: localStorage.getItem("auth") == null, //user not login
-    buttons: ["Posts", "Create", "Statistic"],
+    buttons: ["Posts", "Create", "Statistics"],
     isShowAll: false,
   }),
 

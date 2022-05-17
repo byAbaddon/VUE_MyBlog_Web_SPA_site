@@ -6,7 +6,7 @@
         <h1>Login</h1>
         <form id="form" @submit.prevent="submitLogin">
           <label for="email">Email</label>
-          <input type="text" name="email" placeholder="required" value="koko@abv.bg" />
+          <input type="text" name="email" placeholder="required" value="koko4@abv.bg" />
           <label for="password">Password</label>
           <input type="password" name="password" placeholder="6 symbols minlength"  value="111111" />
           <div id="btn">
@@ -59,10 +59,10 @@ export default {
           } else{
               document.querySelector("#btnSubmit").style.color = "white";
           }
-          setTimeout(() => {
-            // document.querySelector("#btnSubmit").style.color = "white";
-            document.getElementsByClassName("message")[0].textContent = "";
-          }, 1500);
+          // setTimeout(() => {
+          //   document.querySelector("#btnSubmit").style.color = "white";
+          //   document.getElementsByClassName("message")[0].textContent = "";
+          // }, 1500);
         });
       }
     },

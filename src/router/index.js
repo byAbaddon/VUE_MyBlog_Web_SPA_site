@@ -55,9 +55,9 @@ const routes = [
     component: () => import('@/components/CreateComponent')
   },
   {
-    path: '/statistic',
-    name: 'statistic',
-    component: () => import('@/components/StatisticComponent')
+    path: '/statistics',
+    name: 'statistics',
+    component: () => import('@/components/StatisticsComponent')
   },
   {
     path: '/:pathMatch(.*)*',
