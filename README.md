@@ -1,3 +1,6 @@
+#Simple web-spa
+## Using vue 3 and ordinary css
+
 # blog_web_spa_vue3
 
 ## Project setup
