@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Edit Success</h1>
+    <h1>The post was successfully edited !</h1>
     <section> </section>
   </div>
  
@@ -20,13 +20,18 @@ section {
   background-position: center;
   height: 60vh;
   width: 80%;
-  margin: 0 auto 10.5em;
+  margin: 3em auto 5.9em;
 }
 
 
-h1 {
+h1 {  
+color: #0D0D3F;
+text-align: center;
+padding-bottom: 0em;
+font-style: ;
+text-transform: uppercase;
+text-decoration: underline;
+margin-top: 2.2em;
 
-  color:rgb(214, 214, 6);
-  text-align: center;
 }
 </style>
