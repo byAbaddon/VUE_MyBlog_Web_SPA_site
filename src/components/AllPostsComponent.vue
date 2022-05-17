@@ -93,7 +93,7 @@ export default {
   background: linear-gradient(rgba(69, 92, 159, 0.7), rgba(9, 26, 77, 0.91)),
     url("../assets/images/posts/Blog-Posts.png");
   background-position: center;
-  height: 10vh;
+  height: 13vh;
   width: 100%;
 }
 .section h3 {

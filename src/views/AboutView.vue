@@ -36,13 +36,6 @@
 </template>
 
 
-<script>
-export default {
-
-}
-</script>
-
-
 <style scoped>
 .main{
   margin-top: 3em;
@@ -73,6 +66,7 @@ img{
   color: white;
   margin-bottom: 0;
   padding: 1.4em;
+  padding-left:2.2em;
 }
 
 

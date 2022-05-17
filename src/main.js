@@ -7,11 +7,8 @@ import { getAuth } from "firebase/auth"
 
 let app
 getAuth().onAuthStateChanged(async user => {
-  if (!app) {
-    
+  if (!app) {   
     createApp(App).use(router, firebaseSDK,).mount('#app')
-    
-    
     if (user) {
       // await user.uid   //user login
     } else {

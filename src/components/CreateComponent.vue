@@ -132,7 +132,7 @@ export default {
   justify-content: center;
   flex-direction: column;
   background: #fff;
-  width: 450px;
+  width: 30em;
   padding: 30px;
   margin-top: 90px;
   border-radius: 5px;

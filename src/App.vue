@@ -27,23 +27,15 @@ export default {
 
   created() {
     if (localStorage.getItem('auth') == null ) {
-        this.$router.push("/").catch(()=>{})
-      
+        this.$router.push("/").catch(()=>{}) 
     }
-   
-    
   },
 
   beforeMount() {
     window.addEventListener("beforeunload", (event) => {
       if (localStorage.getItem("auth") != null) {
-        
-        //user login in this moment
-        //  localStorage.clear()
         event.returnValue;
-        event.preventDefault()
-        //  event.stopImmediatePropagation()
-        
+        event.preventDefault() 
         return
       }
       return

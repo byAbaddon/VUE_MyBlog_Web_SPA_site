@@ -1,51 +1,52 @@
 <template>
   <div>
- <h1>Statistics</h1>
- <div class="data">
-    <h3>Data: <span class="dataNow">{{new Date().toDateString()}}</span></h3>
-    <h3 class="total">Total posts: <span class="spanTotal">{{totalPosts}}</span></h3>
-    <h3 class="user">Current user posts: <span class="spanUser">{{userPosts}}</span></h3>
- </div>
- 
-  <section> </section>
-
-   
-
+    <h1>Statistics</h1>
+    <div class="data">
+      <h3>
+        Data: <span class="dataNow">{{ new Date().toDateString() }}</span>
+      </h3>
+      <h3 class="total">
+        Total posts: <span class="spanTotal">{{ totalPosts }}</span>
+      </h3>
+      <h3 class="user">
+        Current user posts: <span class="spanUser">{{ userPosts }}</span>
+      </h3>
+    </div>
+    <section></section>
   </div>
- 
 </template>
 
 <script>
- import {getAllPosts} from '@/services/getAllPosts'
+import { getAllPosts } from "@/services/getAllPosts";
 
 export default {
-  data: ()=>({
-    currentUserEmail: JSON.parse(localStorage.getItem('auth')).email,  
+  data: () => ({
+    currentUserEmail: JSON.parse(localStorage.getItem("auth")).email,
     totalPosts: 0,
     userPosts: 0,
   }),
 
-  mounted(){
-    getAllPosts().then(posts => {
-      this.totalPosts = posts.length
-      this.userPosts = posts.filter(x => x.creatorEmail == this.currentUserEmail).length
-
-    })
-  }
-
-}
+  mounted() {
+    getAllPosts().then((posts) => {
+      this.totalPosts = posts.length;
+      this.userPosts = posts.filter(
+        (x) => x.creatorEmail == this.currentUserEmail
+      ).length;
+    });
+  },
+};
 </script>
 
 
 <style scoped>
 section {
   background: url("../assets/images/statistics/statistics.jpeg");
-   background-size: cover;
+  background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
   height: 60vh;
   width: 80%;
-  margin: 1em auto 5.9em;
+  margin: 1em auto 7.3em;
 }
 
 h1 {
@@ -65,23 +66,21 @@ h1 {
   justify-content: space-evenly;
 }
 
-
-.total{
+.total {
   margin-right: 4.6em;
- margin-left: 3em;
+  margin-left: 3em;
 }
 
-.spanTotal{
-color:crimson;
+.spanTotal {
+  color: crimson;
 }
 
-.spanUser{
-color:maroon;
+.spanUser {
+  color: maroon;
 }
 
-.dataNow{
+.dataNow {
   color: red;
 }
-
 </style>
 

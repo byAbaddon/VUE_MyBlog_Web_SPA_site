@@ -25,7 +25,7 @@
 <script>
 import emitter from 'tiny-emitter/instance'
 import updatePost from '@/services//updatedPost'
-import { RouterLink } from 'vue-router'
+
 
 export default {
  
@@ -61,9 +61,7 @@ export default {
    },
 
     onBtnExit(){
-      emitter.emit('exit')
-      // this.$router.push('/')
-     
+      emitter.emit('exit')     
     },
 
   },

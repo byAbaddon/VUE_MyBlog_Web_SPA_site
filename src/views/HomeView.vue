@@ -16,7 +16,7 @@
     </section>
 
    <!-- body two section -->
-     <section class="welcome">
+     <section class="welcome" :style="`${isAuth ? null : 'display:block'}`"  >
    
       <div class="content">
         <h2>Blogging</h2>
@@ -57,6 +57,11 @@ export default {
 
 
 <style scoped>
+.welcome{
+  display: none;
+}
+
+
 @import url("https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900");
 
 .content {
