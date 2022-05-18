@@ -1,5 +1,6 @@
 # Simple_blog_web_spa
 ## Using vue 3 and ordinary css
+### No support phone responsibility, maybe someday ;))
 
 ![myBlog](https://user-images.githubusercontent.com/51271834/168931590-43d3d8f2-b4ed-4fa3-b474-ea5b451559a6.png)
 
