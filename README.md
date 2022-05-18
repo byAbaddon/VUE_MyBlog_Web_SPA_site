@@ -1,4 +1,5 @@
 # Simple_blog_web_spa
+video intro: https://youtu.be/KXBntfgg1j4
 ## Using vue 3 and ordinary css
 ### No support phone responsibility, maybe someday ;))
 
