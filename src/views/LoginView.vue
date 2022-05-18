@@ -6,9 +6,9 @@
         <h1>Login</h1>
         <form id="form" @submit.prevent="submitLogin">
           <label for="email">Email</label>
-          <input type="text" name="email" placeholder="required" value="koko4@abv.bg" />
+          <input type="text" name="email" placeholder="required" value="" />
           <label for="password">Password</label>
-          <input type="password" name="password" placeholder="6 symbols minlength"  value="111111" />
+          <input type="password" name="password" placeholder="6 symbols minlength"  value="" />
           <div id="btn">
             <button id="btnSubmit">Login</button>
             <button
