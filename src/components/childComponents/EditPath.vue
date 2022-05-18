@@ -17,7 +17,7 @@ section {
   background-position: center;
   height: 60vh;
   width: 62%;
-  margin: 3em auto 7.4em;
+  margin: 3em auto 6.6em;
 }
 
 h1 {
