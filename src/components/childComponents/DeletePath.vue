@@ -15,9 +15,9 @@ section {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  height: 60vh;
-  width: 80%;
-  margin: 3em auto 7.4em;
+  height: 66vh;
+  width: 75%;
+  margin: 3em auto 3.3em; 
 }
 
 h1 {

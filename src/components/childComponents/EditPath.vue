@@ -16,7 +16,7 @@ section {
   background-repeat: no-repeat;
   background-position: center;
   height: 60vh;
-  width: 80%;
+  width: 62%;
   margin: 3em auto 7.4em;
 }
 
