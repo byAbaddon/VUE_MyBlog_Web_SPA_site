@@ -1,5 +1,7 @@
 # Simple_blog_web_spa
-video intro: https://youtu.be/KXBntfgg1j4
+### Firebase Hosting Preview channels :
+https://routingbase-21148--blog-web-spa-10slu0lb.web.app
+## video intro: https://youtu.be/KXBntfgg1j4
 ## Using vue 3 and ordinary css
 ### No support phone responsibility, maybe someday ;))
 
